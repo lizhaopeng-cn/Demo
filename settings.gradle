@@ -1,1 +1,1 @@
-include ':APP', ':UPush', ':PushSDK', ':Gradle', ':Library', ':Jackson', ':Router', ':ARouter', ':TabLayout', ':TabLayout'
+include ':APP', ':UPush', ':PushSDK', ':Gradle', ':Library', ':Jackson', ':Router', ':ARouter', ':TabLayout', ':TabLayout', ':RecycleView'

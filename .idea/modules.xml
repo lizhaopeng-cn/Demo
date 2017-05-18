@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/APP/APP.iml" filepath="$PROJECT_DIR$/APP/APP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/ARouter/ARouter.iml" filepath="$PROJECT_DIR$/ARouter/ARouter.iml" />
       <module fileurl="file://$PROJECT_DIR$/Demo.iml" filepath="$PROJECT_DIR$/Demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/Gradle/Gradle.iml" filepath="$PROJECT_DIR$/Gradle/Gradle.iml" />
       <module fileurl="file://$PROJECT_DIR$/Jackson/Jackson.iml" filepath="$PROJECT_DIR$/Jackson/Jackson.iml" />
       <module fileurl="file://$PROJECT_DIR$/Library/Library.iml" filepath="$PROJECT_DIR$/Library/Library.iml" />
       <module fileurl="file://$PROJECT_DIR$/PushSDK/PushSDK.iml" filepath="$PROJECT_DIR$/PushSDK/PushSDK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RecycleView/RecycleView.iml" filepath="$PROJECT_DIR$/RecycleView/RecycleView.iml" />
       <module fileurl="file://$PROJECT_DIR$/Router/Router.iml" filepath="$PROJECT_DIR$/Router/Router.iml" />
       <module fileurl="file://$PROJECT_DIR$/TabLayout/TabLayout.iml" filepath="$PROJECT_DIR$/TabLayout/TabLayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/UPush/UPush.iml" filepath="$PROJECT_DIR$/UPush/UPush.iml" />
