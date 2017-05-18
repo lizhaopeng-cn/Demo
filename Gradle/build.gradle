@@ -1,10 +1,30 @@
 apply plugin: 'com.android.application'
 
+
+println("isTrue:"+isTrue)
+def a = 3;
+if(isTrue){
+    println("a:"+a)
+}else{
+    println("a:"+a+4)
+}
+isTrue.toBoolean()
+println("isTrue:"+isTrue)
+def b = 5;
+if(isTrue){
+    println("b:"+b)
+}else{
+    println("b:"+b+4)
+}
+
+
 android {
     compileSdkVersion 24
     buildToolsVersion "25.0.1"
 
     defaultConfig {
+
+
         applicationId "com.example.gradle"
         minSdkVersion 15
         targetSdkVersion 24
@@ -13,6 +33,10 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+
+        buildConfigField("int","a","0")
+        buildConfigField("int","b",b+"")
+        buildConfigField("String","c","\""+"0"+"\"")
     }
     buildTypes {
         release {
@@ -31,18 +55,3 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-println("isTrue:"+isTrue)
-def a = 3;
-if(isTrue){
-    println("a:"+a)
-}else{
-    println("a:"+a+4)
-}
-isTrue.toBoolean()
-println("isTrue:"+isTrue)
-def b = 5;
-if(isTrue){
-    println("b:"+b)
-}else{
-    println("b:"+b+4)
-}
