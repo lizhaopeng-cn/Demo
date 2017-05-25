@@ -20,5 +20,15 @@ public class MainActivity extends AppCompatActivity {
         }else{
             tv.setText("Release:"+isDebug);
         }
+        String a = null;
+        try {
+            if(a.equals("aaa")){
+                Log.i("test","123");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Log.i("test","233");
+
     }
 }
