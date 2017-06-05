@@ -35,8 +35,8 @@ class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.M
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.tv.setText("text"+datas.get(position));
-        holder.btn.setText("button"+datas.get(position));
+        holder.tv.setText("text-"+datas.get(position));
+        holder.btn.setText("button-"+datas.get(position));
 
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
