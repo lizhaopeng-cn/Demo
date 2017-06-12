@@ -1,4 +1,4 @@
-include ':APP',
+include ':APP', ':Word',
         ':RecycleView'
 //':UPush',
 //':PushSDK',
