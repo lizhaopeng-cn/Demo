@@ -1,4 +1,5 @@
-include ':APP', ':TextInputLayout',
+include ':APP',
+//        ':TextInputLayout',
 //        ':Word',
 //        ':Toolbar',
 //        ':UPush',
@@ -11,4 +12,5 @@ include ':APP', ':TextInputLayout',
 //        ':TabLayout',
 //        ':RecycleView',
 //        ':CallBack',
-        ':mywidget'
+//        ':mywidget',
+        ':Snackbar'
