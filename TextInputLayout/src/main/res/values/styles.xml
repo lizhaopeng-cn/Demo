@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--未超出最大字数的颜色（hint，下划线 的颜色不变，还是原来的colorAccent，只会改变 字数 的颜色）-->
+    <style name="CounterText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <!--超出最大字数的颜色（hint,下划线，字数 的颜色都会变）-->
+    <style name="CounterTextOverflow" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <!--错误提示的颜色-->
+    <style name="ErrorAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+</resources>
