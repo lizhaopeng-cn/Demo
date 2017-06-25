@@ -9,8 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/APP" />
-            <option value="$PROJECT_DIR$/RecycleView" />
-            <option value="$PROJECT_DIR$/Word" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
