@@ -1,4 +1,4 @@
-include ':APP',
+include ':APP', ':navigationview', ':RingView',
 //        ':TextInputLayout',
 //        ':Word',
 //        ':Toolbar',

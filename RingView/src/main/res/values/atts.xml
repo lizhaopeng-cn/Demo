@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RingView">
+        <attr name="ringBackgroundColor" format="color"></attr>
+        <attr name="ringColor1" format="color"></attr>
+        <attr name="ringColor2" format="color"></attr>
+        <attr name="ringColor3" format="color"></attr>
+        <attr name="clockwise" format="boolean"></attr>
+        <attr name="ringInnerRadius" format="float"></attr>
+        <attr name="ringThickness" format="float"></attr>
+        <attr name="progress" format="float"></attr>
+        <attr name="direction">
+            <enum name="left" value="0"></enum>
+            <enum name="top" value="1"></enum>
+            <enum name="right" value="2"></enum>
+            <enum name="botton" value="3"></enum>
+        </attr>
+    </declare-styleable>
+</resources>
