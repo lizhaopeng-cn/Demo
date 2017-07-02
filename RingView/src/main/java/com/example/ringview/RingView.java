@@ -41,15 +41,18 @@ public class RingView extends View{
     private static float currentValue = 0f;
 
 
-    int paddingLeft = getPaddingLeft();
-    int paddingRight = getPaddingRight();
-    int paddingTop = getPaddingTop();
-    int paddingBottom = getPaddingBottom();
-    int width = getWidth() - paddingLeft - paddingRight;
-    int height = getHeight() - paddingTop - paddingBottom;
 
-    int[] colors;
-    SweepGradient sweepGradient;
+    private int paddingLeft = getPaddingLeft();
+    private int paddingRight = getPaddingRight();
+    private int paddingTop = getPaddingTop();
+    private int paddingBottom = getPaddingBottom();
+    private int width = getWidth() - paddingLeft - paddingRight;
+    private int height = getHeight() - paddingTop - paddingBottom;
+
+    private RectF rectF = new RectF(paddingLeft - paddingRight + mThickness / 2, paddingTop - paddingBottom + mThickness / 2, paddingLeft - paddingRight + mInnerRadius * 2 + mThickness / 2, paddingTop - paddingBottom + mInnerRadius * 2 + mThickness / 2);
+
+    private int[] colors;
+    private SweepGradient sweepGradient;
 
     public RingView(Context context) {
         super(context);
@@ -95,10 +98,16 @@ public class RingView extends View{
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        drawTextView(canvas);
 
-//        canvas.drawColor(getResources().getColor(R.color.blue));
+        drawBackgroundRing(canvas);
+
+        drawRing(canvas);
 
 
+    }
+
+    private void drawTextView(Canvas canvas) {
         Rect rect = new Rect();
         String text = "三";
         Paint paintText = new Paint();
@@ -109,18 +118,18 @@ public class RingView extends View{
         Paint.FontMetricsInt fontMetrics = paintText.getFontMetricsInt();
         int baseline = (getMeasuredHeight() - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top;
         canvas.drawText(text,100*density - rect.width()/2,100*density+rect.height()/2,paintText);
+    }
 
-
+    private void drawBackgroundRing(Canvas canvas) {
         mRingBackgroundPaint.setColor(mRingBackgroundColor);
         mRingBackgroundPaint.setStrokeWidth(mThickness);
         mRingBackgroundPaint.setStyle(Paint.Style.STROKE);
         mRingBackgroundPaint.setAntiAlias(true);
 
-        RectF rectF = new RectF(mThickness / 2, mThickness / 2, mInnerRadius * 2 + mThickness / 2, mInnerRadius * 2 + mThickness / 2);
         canvas.drawArc(rectF,0,360,false,mRingBackgroundPaint);
+    }
 
-
-
+    private void drawRing(Canvas canvas) {
         mRingPaint.setColor(mRingColor1);
         mRingPaint.setStrokeWidth(mThickness);
 //        paint.setStrokeCap(Paint.Cap.ROUND);
@@ -131,30 +140,30 @@ public class RingView extends View{
         }else{
             colors = new int[]{mRingColor3,mRingColor2,mRingColor1};
         }
-        sweepGradient = new SweepGradient(mInnerRadius + mThickness / 2, mInnerRadius + mThickness / 2, colors, null);
+        sweepGradient = new SweepGradient(paddingLeft - paddingRight + mInnerRadius + mThickness / 2, paddingTop - paddingBottom + mInnerRadius + mThickness / 2, colors, null);
         mRingPaint.setShader(sweepGradient);
 
         canvas.save();
         switch (mDirection){
 
             case LEFT:
-                canvas.rotate(-180, mInnerRadius + mThickness / 2 ,mInnerRadius + mThickness / 2);
+                canvas.rotate(-180, paddingLeft - paddingRight + mInnerRadius + mThickness / 2 ,paddingTop - paddingBottom + mInnerRadius + mThickness / 2);
                 break;
 
             case TOP:
-                canvas.rotate(-90, mInnerRadius + mThickness / 2 ,mInnerRadius + mThickness / 2);
+                canvas.rotate(-90, paddingLeft - paddingRight + mInnerRadius + mThickness / 2 ,paddingTop - paddingBottom + mInnerRadius + mThickness / 2);
                 break;
 
             case RIGHT:
-                canvas.rotate(0, mInnerRadius + mThickness / 2 ,mInnerRadius + mThickness / 2);
+                canvas.rotate(0, paddingLeft - paddingRight + mInnerRadius + mThickness / 2 ,paddingTop - paddingBottom + mInnerRadius + mThickness / 2);
                 break;
 
             case BOTTOM:
-                canvas.rotate(90, mInnerRadius + mThickness / 2 ,mInnerRadius + mThickness / 2);
+                canvas.rotate(90, paddingLeft - paddingRight + mInnerRadius + mThickness / 2 ,paddingTop - paddingBottom + mInnerRadius + mThickness / 2);
                 break;
 
             default:
-                canvas.rotate(180, mInnerRadius + mThickness / 2 ,mInnerRadius + mThickness / 2);
+                canvas.rotate(180, paddingLeft - paddingRight + mInnerRadius + mThickness / 2 ,paddingTop - paddingBottom + mInnerRadius + mThickness / 2);
                 break;
 
         }
@@ -166,6 +175,7 @@ public class RingView extends View{
         }
 
         canvas.restore();
+
     }
 
 
@@ -184,7 +194,7 @@ public class RingView extends View{
             public void onAnimationUpdate(ValueAnimator animation) {
                 currentValue = (float) animation.getAnimatedValue();
                 invalidate();
-                Log.i("test",currentValue+"");
+//                Log.i("test",currentValue+"");
             }
         });
 //        valueAnimator.setRepeatCount(3);
