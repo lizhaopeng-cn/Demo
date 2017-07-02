@@ -4,8 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/APP/APP.iml" filepath="$PROJECT_DIR$/APP/APP.iml" />
       <module fileurl="file://$PROJECT_DIR$/Demo.iml" filepath="$PROJECT_DIR$/Demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TextInputLayout/TextInputLayout.iml" filepath="$PROJECT_DIR$/TextInputLayout/TextInputLayout.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mywidget/mywidget.iml" filepath="$PROJECT_DIR$/mywidget/mywidget.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RingView/RingView.iml" filepath="$PROJECT_DIR$/RingView/RingView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Snackbar/Snackbar.iml" filepath="$PROJECT_DIR$/Snackbar/Snackbar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/navigationview/navigationview.iml" filepath="$PROJECT_DIR$/navigationview/navigationview.iml" />
     </modules>
   </component>
 </project>
