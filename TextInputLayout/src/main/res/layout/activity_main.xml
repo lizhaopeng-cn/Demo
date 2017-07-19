@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+    <!--TextInputLayout的颜色来自style中的colorAccent的颜色-->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edit_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="邮箱"
+            android:inputType="textEmailAddress"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:hintEnabled="true"
+
+        app:counterEnabled="true"
+        app:counterMaxLength="11"
+        app:counterTextAppearance="@style/CounterText"
+        app:counterOverflowTextAppearance="@style/CounterTextOverflow"
+
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/ErrorAppearance"
+
+
+        app:passwordToggleTint="@color/colorAccent"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleContentDescription="@string/app_name"
+        >
+        <EditText
+            android:id="@+id/edit_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="密码"
+            android:textColor="@color/colorAccent"
+            android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
+</LinearLayout>
