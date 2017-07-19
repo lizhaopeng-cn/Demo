@@ -9,14 +9,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/APP" />
-            <option value="$PROJECT_DIR$/ARouter" />
-            <option value="$PROJECT_DIR$/Gradle" />
-            <option value="$PROJECT_DIR$/Jackson" />
-            <option value="$PROJECT_DIR$/Library" />
-            <option value="$PROJECT_DIR$/PushSDK" />
-            <option value="$PROJECT_DIR$/Router" />
-            <option value="$PROJECT_DIR$/TabLayout" />
-            <option value="$PROJECT_DIR$/UPush" />
+            <option value="$PROJECT_DIR$/CoordinatorLayout" />
+            <option value="$PROJECT_DIR$/RingView" />
+            <option value="$PROJECT_DIR$/Snackbar" />
+            <option value="$PROJECT_DIR$/WebView" />
+            <option value="$PROJECT_DIR$/navigationview" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
