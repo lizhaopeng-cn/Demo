@@ -9,10 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/APP" />
-            <option value="$PROJECT_DIR$/CoordinatorLayout" />
-            <option value="$PROJECT_DIR$/RingView" />
-            <option value="$PROJECT_DIR$/Snackbar" />
-            <option value="$PROJECT_DIR$/WebView" />
             <option value="$PROJECT_DIR$/navigationview" />
           </set>
         </option>

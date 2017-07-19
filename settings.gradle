@@ -1,4 +1,8 @@
-include ':APP', ':navigationview', ':RingView', ':WebView', ':CoordinatorLayout',
+include ':APP',
+        ':navigationview'
+//        ':RingView',
+//        ':WebView',
+//        ':CoordinatorLayout',
 //        ':TextInputLayout',
 //        ':Word',
 //        ':Toolbar',
@@ -13,4 +17,4 @@ include ':APP', ':navigationview', ':RingView', ':WebView', ':CoordinatorLayout'
 //        ':RecycleView',
 //        ':CallBack',
 //        ':mywidget',
-        ':Snackbar'
+//        ':Snackbar'
