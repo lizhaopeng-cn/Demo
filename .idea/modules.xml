@@ -8,7 +8,6 @@
       <module fileurl="file://$PROJECT_DIR$/Snackbar/Snackbar.iml" filepath="$PROJECT_DIR$/Snackbar/Snackbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/WebView/WebView.iml" filepath="$PROJECT_DIR$/WebView/WebView.iml" />
       <module fileurl="file://$PROJECT_DIR$/navigationview/navigationview.iml" filepath="$PROJECT_DIR$/navigationview/navigationview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/navigationview/navigationview.iml" filepath="$PROJECT_DIR$/navigationview/navigationview.iml" />
     </modules>
   </component>
 </project>
