@@ -1,5 +1,5 @@
-include ':APP',
-        ':navigationview'
+include ':APP', ':Date&TimePicker',
+        ':navigationview',
 //        ':RingView',
 //        ':WebView',
 //        ':CoordinatorLayout',
@@ -8,13 +8,13 @@ include ':APP',
 //        ':Toolbar',
 //        ':UPush',
 //        ':PushSDK',
-//        ':Gradle',
+        ':Gradle',
 //        ':Library',
 //        ':Jackson',
 //        ':Router',
 //        ':ARouter',
 //        ':TabLayout',
-//        ':RecycleView',
+        ':RecycleView'
 //        ':CallBack',
 //        ':mywidget',
 //        ':Snackbar'

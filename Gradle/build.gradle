@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 
 
 println("isTrue:"+isTrue)
+println("---------------------------------------------------------------------------------------")
+println("project dirs:${getProject().getRootDir().path}")
+println(rootProject)
+//println(rootProject.absoluteProjectPath())
+println(rootProject.buildDir)
+println(rootProject.rootDir)
+println(rootProject.projectDir)
+println("---------------------------------------------------------------------------------------")
 def a = 3;
 if(isTrue){
     println("a:"+a)
