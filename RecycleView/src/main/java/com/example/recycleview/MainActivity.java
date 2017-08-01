@@ -40,12 +40,12 @@ public class MainActivity extends AppCompatActivity {
 
         //设置布局
 
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        mRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
 
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this,3));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL));
+//        mRecyclerView.setLayoutManager(new GridLayoutManager(this,3));
+//        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+//        mRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL));
 
 //        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(4,StaggeredGridLayoutManager.VERTICAL));
 //        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(4,StaggeredGridLayoutManager.HORIZONTAL));
@@ -58,20 +58,32 @@ public class MainActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                datas.add(1,"1");
-                datas.add(3,"3");
-//                adapter.notifyItemInserted(1);
-                adapter.notifyItemInserted(4);
+//                datas.add(1,"1");
+//                datas.add(3,"3");
+////                adapter.notifyItemInserted(1);
+//                adapter.notifyItemInserted(4);
+                datas.add(0,"button");
+                adapter.notifyItemInserted(0);
+                adapter.notifyItemRangeChanged(0,datas.size());
             }
         });
 
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                datas.remove(1);
-                datas.remove(4);
-                adapter.notifyItemRemoved(1);
-                adapter.notifyItemRemoved(4);
+//                datas.remove(1);
+//                datas.remove(4);
+//                adapter.notifyItemRemoved(1);
+//                adapter.notifyItemRemoved(4);
+            }
+        });
+
+        adapter.setTimeOnDeleteListener(new MyRecyclerViewAdapter.TimeOnDeleteListener() {
+            @Override
+            public void onDelete(int position) {
+                datas.remove(position);
+                adapter.notifyItemRemoved(position);
+                adapter.notifyItemRangeChanged(position,datas.size());
             }
         });
     }

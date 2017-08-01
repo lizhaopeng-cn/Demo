@@ -20,6 +20,7 @@ class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.M
 
     private Context mContext;
     private List<String> datas;
+    private TimeOnDeleteListener timeOnDeleteListener;
 
     public MyRecyclerViewAdapter(Context mContext, List<String> datas){
         this.mContext = mContext;
@@ -34,7 +35,7 @@ class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.M
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.tv.setText("text-"+datas.get(position));
         holder.btn.setText("button-"+datas.get(position));
 
@@ -42,6 +43,7 @@ class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.M
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext,"test",Toast.LENGTH_SHORT).show();
+                timeOnDeleteListener.onDelete(position);
             }
         });
     }
@@ -64,5 +66,13 @@ class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.M
         }
     }
 
+    //删除指定签到时间的接口
+    public static interface TimeOnDeleteListener{
+        public void onDelete(int position);
+    }
+
+    public void setTimeOnDeleteListener(TimeOnDeleteListener timeOnDeleteListener){
+        this.timeOnDeleteListener = timeOnDeleteListener;
+    }
 
 }
