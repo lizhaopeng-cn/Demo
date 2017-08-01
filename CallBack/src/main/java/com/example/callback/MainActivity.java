@@ -24,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvText = (TextView) findViewById(R.id.tv_item);
+        tvText = (TextView) findViewById(R.id.tv_text);
         lvList = (ListView) findViewById(R.id.lv_list);
 
         datas = new ArrayList<>();
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 10; i++){
             datas.add(String.valueOf(i));
         }
 
@@ -42,11 +42,21 @@ public class MainActivity extends AppCompatActivity {
         myAdapter = new MyAdapter(this,datas,updataCallBack);
         lvList.setAdapter(myAdapter);
 
+        tvText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datas.add(0,"button");
+                myAdapter.notifyDataSetChanged();
+            }
+        });
+
         lvList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                tvText.setText("onItemClick:"+i);
                 Log.e("test","onItemClick"+i);
+                datas.remove(i);
+                myAdapter.notifyDataSetChanged();
             }
         });
     }
