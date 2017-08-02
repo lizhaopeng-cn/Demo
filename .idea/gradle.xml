@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/APP" />
+            <option value="$PROJECT_DIR$/Date&amp;TimePicker" />
             <option value="$PROJECT_DIR$/Retrofit&amp;RxJava" />
           </set>
         </option>
