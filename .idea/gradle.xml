@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/APP" />
+            <option value="$PROJECT_DIR$/Butterknife" />
             <option value="$PROJECT_DIR$/RecycleView" />
           </set>
         </option>
