@@ -1,4 +1,4 @@
-package com.lzp.retrofitrxjava.been;
+package com.lzp.retrofitrxjava;
 
 import java.util.List;
 
