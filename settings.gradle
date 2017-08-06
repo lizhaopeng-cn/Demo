@@ -1,5 +1,6 @@
 include ':APP',
-        ':Date&TimePicker',
+//        ':RxJava',
+//        ':Date&TimePicker',
         ':Retrofit&RxJava'
 //        ':navigationview',
 //        ':RingView',

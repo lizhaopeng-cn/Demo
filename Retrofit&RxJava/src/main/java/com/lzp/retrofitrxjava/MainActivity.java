@@ -8,17 +8,13 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
 import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.text)
     TextView textView;
+
+    private Subscriber<HttpResult<MovieBeen>> subscriber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,36 +27,66 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.button)
     public void getMovie(){
-        String baseUrl = "https://api.douban.com/v2/movie/";
+        subscriber = new Subscriber<HttpResult<MovieBeen>>() {
+            @Override
+            public void onCompleted() {
+                Toast.makeText(MainActivity.this, "Get Top Movie Completed", Toast.LENGTH_SHORT).show();
+            }
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
+            @Override
+            public void onError(Throwable e) {
+                textView.setText(e.getMessage());
+            }
 
-        MovieModel movieModel = retrofit.create(MovieModel.class);
+            @Override
+            public void onNext(HttpResult<MovieBeen> movieBeen) {
+//                textView.setText(movieBeen.getTitle());
+                try{
+                    textView.setText(movieBeen.getData().getTitle());
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
 
-        Observable<MovieBeen> observable = movieModel.getTopMovie(0,10);
-        observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<MovieBeen>() {
-                    @Override
-                    public void onCompleted() {
-                        Toast.makeText(MainActivity.this, "Get Top Movie Completed", Toast.LENGTH_SHORT).show();
-                    }
+            }
+        };
+        HttpMethods.getInstance().getTopMovie(subscriber, 0, 10);
 
-                    @Override
-                    public void onError(Throwable e) {
-                        textView.setText(e.getMessage());
-                    }
-
-                    @Override
-                    public void onNext(MovieBeen movieBeen) {
-                        textView.setText(movieBeen.getTitle());
-                    }
-                });
     }
+
+//    @OnClick(R.id.button)
+//    public void getMovie(){
+//        String baseUrl = "https://api.douban.com/v2/movie/";
+//
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(baseUrl)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//                .build();
+//
+//        MovieModel movieModel = retrofit.create(MovieModel.class);
+//
+//        Observable<MovieBeen> observable = movieModel.getTopMovie(0,10);
+//        observable.subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<MovieBeen>() {
+//                    @Override
+//                    public void onCompleted() {
+//                        Toast.makeText(MainActivity.this, "Get Top Movie Completed", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        textView.setText(e.getMessage());
+//                    }
+//
+//                    @Override
+//                    public void onNext(MovieBeen movieBeen) {
+//                        textView.setText(movieBeen.getTitle());
+//                    }
+//                });
+//    }
+
+
 
 //    @OnClick(R.id.button)
 //    public void getMovie(){

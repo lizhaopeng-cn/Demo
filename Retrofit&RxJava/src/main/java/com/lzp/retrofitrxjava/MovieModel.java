@@ -12,5 +12,5 @@ import rx.Observable;
 public interface MovieModel {
     @GET("top250")
 //    Call<MovieBeen> getTopVovie(@Query("start") int start, @Query("count") int count);
-    Observable<MovieBeen> getTopMovie(@Query("start") int start, @Query("count") int count);
+    Observable<HttpResult<MovieBeen>> getTopMovie(@Query("start") int start, @Query("count") int count);
 }
