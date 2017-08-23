@@ -1,7 +1,7 @@
 include ':APP',
-//        ':RxJava',
+        ':RxJava',
 //        ':Date&TimePicker',
-        ':Retrofit&RxJava'
+        ':Retrofit&RxJava',
 //        ':navigationview',
 //        ':RingView',
 //        ':WebView',
@@ -17,7 +17,7 @@ include ':APP',
 //        ':Router',
 //        ':ARouter',
 //        ':TabLayout',
-//        ':RecycleView',
+        ':RecycleView'
 //        ':CallBack',
 //        ':mywidget',
 //        ':Snackbar',

@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by lzp on 2017/5/18.
  */
@@ -56,13 +59,17 @@ class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.M
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tv;
-        public Button btn;
+//        public TextView tv;
+//        public Button btn;
+
+        @BindView(R.id.tv) public TextView tv;
+        @BindView(R.id.btn) public Button btn;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            tv = (TextView) itemView.findViewById(R.id.tv);
-            btn = (Button) itemView.findViewById(R.id.btn);
+            ButterKnife.bind(mContext, itemView);
+//            tv = (TextView) itemView.findViewById(R.id.tv);
+//            btn = (Button) itemView.findViewById(R.id.btn);
         }
     }
 
