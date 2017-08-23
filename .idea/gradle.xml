@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/CountDown" />
             <option value="$PROJECT_DIR$/CountDownTimer" />
             <option value="$PROJECT_DIR$/Date&amp;TimePicker" />
+            <option value="$PROJECT_DIR$/Timer" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
