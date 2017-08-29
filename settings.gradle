@@ -1,4 +1,4 @@
-include ':APP', ':CountDown', ':Timer',
+include ':APP', ':CountDown', ':Timer', ':choosepic',
         ':CountDownTimer',
 //        ':RxJava',
         ':Date&TimePicker'
