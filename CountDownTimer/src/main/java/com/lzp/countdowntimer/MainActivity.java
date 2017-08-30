@@ -14,7 +14,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvHour;
     private TextView tvDay;
 
-    private long allTime = 259210000;
+//    private long allTime = 259210000;
+    private long allTime = 10000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,14 +102,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTick(long millisUntilFinished) {
             tvSecond.setText(String.valueOf(millisUntilFinished / 1000));
-            allTime = allTime - millisUntilFinished / 1000;
+//            allTime = allTime - millisUntilFinished / 1000;
         }
 
         @Override
         public void onFinish() {
-            if(allTime != 0){
-                minuteTimer.start();
-            }
+//            if(allTime != 0){
+//                minuteTimer.start();
+//            }
         }
     };
 
