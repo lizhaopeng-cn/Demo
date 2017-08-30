@@ -101,11 +101,19 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case CHOOSE_ALBUM:
                 if(resultCode == RESULT_OK){
-                    if(Build.VERSION.SDK_INT >= 19){
-                        handlerImageOnKitKat(data);
-                    }else{
-                        handlerImageBeforeKitKat(data);
+                    Uri uri = data.getData();
+                    Bitmap bitmap = null;
+                    try {
+                        bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
                     }
+                    ivPicture.setImageBitmap(bitmap);
+//                    if(Build.VERSION.SDK_INT >= 19){
+//                        handlerImageOnKitKat(data);
+//                    }else{
+//                        handlerImageBeforeKitKat(data);
+//                    }
                 }
                 break;
             default:
