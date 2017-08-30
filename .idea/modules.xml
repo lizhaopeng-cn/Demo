@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/Demo.iml" filepath="$PROJECT_DIR$/Demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/Gradle/Gradle.iml" filepath="$PROJECT_DIR$/Gradle/Gradle.iml" />
       <module fileurl="file://$PROJECT_DIR$/Timer/Timer.iml" filepath="$PROJECT_DIR$/Timer/Timer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/choosepic/choosepic.iml" filepath="$PROJECT_DIR$/choosepic/choosepic.iml" />
     </modules>
   </component>
 </project>
