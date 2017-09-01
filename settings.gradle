@@ -1,7 +1,10 @@
-include ':APP', ':CountDown', ':Timer', ':choosepic',
-        ':CountDownTimer',
+include ':APP',
+//        ':CountDown',
+//        ':Timer',
+        ':choosepic'
+//        ':CountDownTimer',
 //        ':RxJava',
-        ':Date&TimePicker'
+//        ':Date&TimePicker'
 //        ':Retrofit&RxJava',
 //        ':navigationview',
 //        ':RingView',

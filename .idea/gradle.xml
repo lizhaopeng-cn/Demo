@@ -9,10 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/APP" />
-            <option value="$PROJECT_DIR$/CountDown" />
-            <option value="$PROJECT_DIR$/CountDownTimer" />
-            <option value="$PROJECT_DIR$/Date&amp;TimePicker" />
-            <option value="$PROJECT_DIR$/Timer" />
             <option value="$PROJECT_DIR$/choosepic" />
           </set>
         </option>

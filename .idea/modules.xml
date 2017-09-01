@@ -3,12 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/APP/APP.iml" filepath="$PROJECT_DIR$/APP/APP.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CountDown/CountDown.iml" filepath="$PROJECT_DIR$/CountDown/CountDown.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CountDownTimer/CountDownTimer.iml" filepath="$PROJECT_DIR$/CountDownTimer/CountDownTimer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Date&amp;TimePicker/Date&amp;TimePicker.iml" filepath="$PROJECT_DIR$/Date&amp;TimePicker/Date&amp;TimePicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/Demo.iml" filepath="$PROJECT_DIR$/Demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/Gradle/Gradle.iml" filepath="$PROJECT_DIR$/Gradle/Gradle.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Timer/Timer.iml" filepath="$PROJECT_DIR$/Timer/Timer.iml" />
       <module fileurl="file://$PROJECT_DIR$/choosepic/choosepic.iml" filepath="$PROJECT_DIR$/choosepic/choosepic.iml" />
     </modules>
   </component>
