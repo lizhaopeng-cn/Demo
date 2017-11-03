@@ -107,7 +107,18 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                             holder.checkBox.setChecked(false);
                             holder.tvRightName.setTextColor(Color.parseColor("#666666"));
                             selectedRight.put(position, false);
+                            boolean b = false;
+                            for(int i = 0; i < selectedRight.size(); i++){
+                                if(selectedRight.get(i)){
+                                    b = true;
+                                    break;
+                                }
+                            }
+                            if(!b){
+                                selectedRight.put(0, true);
+                            }
                             onRightMultiSelectLisentener.onRightMultiSelect(selectedAll);
+                            notifyDataSetChanged();
                         }else if(!holder.checkBox.isChecked()){
                             holder.checkBox.setChecked(true);
                             holder.tvRightName.setTextColor(Color.parseColor("#23beae"));

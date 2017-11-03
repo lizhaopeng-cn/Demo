@@ -40,7 +40,7 @@
             android:layout_height="7dp"
             android:background="@drawable/bg_iflight_filter_circle_tag"
             android:layout_gravity="center_vertical"
-            android:visibility="visible"/>
+            android:visibility="invisible"/>
 
     </LinearLayout>
 

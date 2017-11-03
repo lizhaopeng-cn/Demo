@@ -52,17 +52,20 @@ public class IFlightFilterLeftAdapter extends RecyclerView.Adapter<IFlightFilter
         holder.tvLeftName.setText(mLefts.get(position));
         if(mIFlightFilterList != null && mIFlightFilterList.size() > 0){
             IFlightFilter iFlightFilter = mIFlightFilterList.get(position);
+
             String type = iFlightFilter.getSelectType();
             if(TextUtils.equals(type, IFlightFilter.SINGLE_SELECT)){
                 holder.tvCircleLeftTag.setVisibility(View.VISIBLE);
             }else if(TextUtils.equals(type, IFlightFilter.MULTI_SELECT)){
-                holder.tvCircleLeftTag.setVisibility(View.INVISIBLE);
-            }
-        }
-        if(selectedAll != null && selectedAll.size() > 0){
-            for(int i = 0; i < selectedAll.size(); i++){
-                IFlightFilter iFlightFilter = mIFlightFilterList.get(i);
-
+                if(selectedAll != null && selectedAll.size() > 0){
+                    List<String> rights = iFlightFilter.getRights();
+                    SparseBooleanArray selectedRight = selectedAll.get(position);
+                    if(TextUtils.equals(rights.get(0), "不限") && selectedRight.get(0)){
+                        holder.tvCircleLeftTag.setVisibility(View.INVISIBLE);
+                    }else{
+                        holder.tvCircleLeftTag.setVisibility(View.VISIBLE);
+                    }
+                }
             }
         }
         if(selectedPosition == position){
