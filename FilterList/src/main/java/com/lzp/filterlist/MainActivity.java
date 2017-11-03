@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         iFlightFilter1.setRights(rights1);
 
         IFlightFilter iFlightFilter2 = new IFlightFilter();
-        iFlightFilter2.setSelectType(IFlightFilter.MULTI_SELECT);
+        iFlightFilter2.setSelectType(IFlightFilter.SINGLE_SELECT);
         iFlightFilter2.setLeftName("舱位");
         List<String> rights2 = new ArrayList<>();
         rights2.add("经济/超级经济舱");

@@ -53,10 +53,6 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
             SparseBooleanArray selectedRight = new SparseBooleanArray();
             for(int j = 0; j < mIFlightFilterList.get(i).getRights().size(); j++){
                 selectedRight.put(j, false);
-                for(int x = 0; x < selectedRight.size(); x++){
-                    boolean a = selectedRight.get(0);
-                    boolean b = selectedRight.get(0);
-                }
                 selectedAll.put(i, selectedRight);
             }
         }
@@ -85,9 +81,10 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
         holder.rlRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mIFlightFilterList != null && mIFlightFilterList.size() > 0){
-//                    for(IFlightFilter iFlightFilter : mIFlightFilterList){
-
+                if(mIFlightFilterList != null && mIFlightFilterList.get(mLeftId) != null
+                        && !TextUtils.isEmpty(mIFlightFilterList.get(mLeftId).getSelectType())){
+                    String type = mIFlightFilterList.get(mLeftId).getSelectType();
+                    if(TextUtils.equals(type, IFlightFilter.MULTI_SELECT)){
                         if(holder.checkBox.isChecked()){
                             holder.checkBox.setChecked(false);
                             holder.tvRightName.setTextColor(Color.parseColor("#666666"));
@@ -98,13 +95,23 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                             selectedRight.put(position, true);
                         }
                         selectedAll.put(mLeftId, selectedRight);
+                    }else if(TextUtils.equals(type, IFlightFilter.SINGLE_SELECT)){
+                        if(holder.checkBox.isChecked()){
+//                            holder.checkBox.setChecked(false);
+//                            holder.tvRightName.setTextColor(Color.parseColor("#666666"));
+//                            selectedRight.put(position, false);
+                        }else{
+                            for(int i = 0; i < selectedRight.size(); i++){
+                                selectedRight.put(i, false);
 
-//                        if(TextUtils.equals(iFlightFilter.getSelectType(), IFlightFilter.MULTI_SELECT)){
-//
-//                        }else if(TextUtils.equals(iFlightFilter.getSelectType(), IFlightFilter.SINGLE_SELECT)){
-//
-//                        }
-//                    }
+                            }
+                            holder.checkBox.setChecked(true);
+                            holder.tvRightName.setTextColor(Color.parseColor("#23beae"));
+                            selectedRight.put(position, true);
+                            selectedAll.put(mLeftId, selectedRight);
+                            notifyDataSetChanged();
+                        }
+                    }
                 }
             }
         });
