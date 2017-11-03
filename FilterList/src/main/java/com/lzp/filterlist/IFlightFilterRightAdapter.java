@@ -33,6 +33,9 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
 //    private SparseBooleanArray selectedRight;
     private SparseArray<SparseBooleanArray> selectedAll;
 
+    private boolean isSelectUnlimited; //是否选择的不限
+    private boolean isSelectDirectFlight; //是否选择的直飞
+
     public IFlightFilterRightAdapter(Context context){
         this.mContext = context;
         selectedAll = new SparseArray<>();
@@ -85,25 +88,39 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                         && !TextUtils.isEmpty(mIFlightFilterList.get(mLeftId).getSelectType())){
                     String type = mIFlightFilterList.get(mLeftId).getSelectType();
                     if(TextUtils.equals(type, IFlightFilter.MULTI_SELECT)){
-                        if(holder.checkBox.isChecked()){
+                        if(position == 0 && TextUtils.equals(mIFlightFilterList.get(mLeftId).getRights().get(0), "不限")
+                                || position == 1 && TextUtils.equals(mIFlightFilterList.get(mLeftId).getRights().get(1), "直飞")){
+                            isSelectUnlimited = position == 0 && TextUtils.equals(mIFlightFilterList.get(mLeftId).getRights().get(0), "不限") ? true : false;
+                            isSelectDirectFlight = position == 1 && TextUtils.equals(mIFlightFilterList.get(mLeftId).getRights().get(1), "直飞") ? true : false;
+                            if(!holder.checkBox.isChecked()){
+                                for(int i = 0; i < selectedRight.size(); i++){
+                                    selectedRight.put(i, false);
+                                }
+                                holder.checkBox.setChecked(true);
+                                holder.tvRightName.setTextColor(Color.parseColor("#23beae"));
+                                selectedRight.put(position, true);
+                                selectedAll.put(mLeftId, selectedRight);
+                                notifyDataSetChanged();
+                            }
+                        }else if(holder.checkBox.isChecked()){
                             holder.checkBox.setChecked(false);
                             holder.tvRightName.setTextColor(Color.parseColor("#666666"));
                             selectedRight.put(position, false);
-                        }else{
+                        }else if(!holder.checkBox.isChecked()){
                             holder.checkBox.setChecked(true);
                             holder.tvRightName.setTextColor(Color.parseColor("#23beae"));
                             selectedRight.put(position, true);
+                            if(isSelectUnlimited)
+                                selectedRight.put(0, false);
+                            if(isSelectDirectFlight)
+                                selectedRight.put(1, false);
+                            notifyDataSetChanged();
                         }
                         selectedAll.put(mLeftId, selectedRight);
                     }else if(TextUtils.equals(type, IFlightFilter.SINGLE_SELECT)){
-                        if(holder.checkBox.isChecked()){
-//                            holder.checkBox.setChecked(false);
-//                            holder.tvRightName.setTextColor(Color.parseColor("#666666"));
-//                            selectedRight.put(position, false);
-                        }else{
+                        if(!holder.checkBox.isChecked()){
                             for(int i = 0; i < selectedRight.size(); i++){
                                 selectedRight.put(i, false);
-
                             }
                             holder.checkBox.setChecked(true);
                             holder.tvRightName.setTextColor(Color.parseColor("#23beae"));
