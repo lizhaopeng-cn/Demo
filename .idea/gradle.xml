@@ -9,7 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/APP" />
-            <option value="$PROJECT_DIR$/choosepic" />
+            <option value="$PROJECT_DIR$/FilterList" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

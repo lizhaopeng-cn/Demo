@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_right"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="#f6f6f6">
+
+    <TextView
+        android:id="@+id/tv_right_name"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:text="不限"/>
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/selector_filter"
+        android:button="@null"
+        android:focusable="false"
+        android:clickable="false"
+        android:focusableInTouchMode="false" />
+
+</RelativeLayout>

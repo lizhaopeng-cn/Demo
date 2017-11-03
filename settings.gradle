@@ -1,7 +1,7 @@
 include ':APP',
 //        ':CountDown',
 //        ':Timer',
-        ':choosepic'
+//        ':choosepic',
 //        ':CountDownTimer',
 //        ':RxJava',
 //        ':Date&TimePicker'
@@ -25,3 +25,4 @@ include ':APP',
 //        ':CallBack',
 //        ':mywidget',
 //        ':Snackbar',
+        ':FilterList'
