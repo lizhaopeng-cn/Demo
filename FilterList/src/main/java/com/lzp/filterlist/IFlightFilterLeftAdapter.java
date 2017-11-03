@@ -3,7 +3,6 @@ package com.lzp.filterlist;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,24 +33,16 @@ public class IFlightFilterLeftAdapter extends RecyclerView.Adapter<IFlightFilter
         }
     }
 
-//    public void setLeftValue(List<String> lefts){
-//        this.mLefts = lefts;
-//    }
-
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_left, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
-//        mOnLeftSelectListener.onLeftSelect(0);
         return myViewHolder;
     }
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.tvLeftName.setText(mLefts.get(position));
-//        if(){
-//
-//        }
         if(selectedPosition == position){
             holder.tvLineSelected.setVisibility(View.VISIBLE);
             holder.llLeft.setBackgroundColor(Color.parseColor("#ffffff"));
