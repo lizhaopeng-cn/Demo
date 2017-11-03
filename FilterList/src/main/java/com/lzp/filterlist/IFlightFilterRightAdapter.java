@@ -100,12 +100,14 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                                 holder.tvRightName.setTextColor(Color.parseColor("#23beae"));
                                 selectedRight.put(position, true);
                                 selectedAll.put(mLeftId, selectedRight);
+                                onRightMultiSelectLisentener.onRightMultiSelect(selectedAll);
                                 notifyDataSetChanged();
                             }
                         }else if(holder.checkBox.isChecked()){
                             holder.checkBox.setChecked(false);
                             holder.tvRightName.setTextColor(Color.parseColor("#666666"));
                             selectedRight.put(position, false);
+                            onRightMultiSelectLisentener.onRightMultiSelect(selectedAll);
                         }else if(!holder.checkBox.isChecked()){
                             holder.checkBox.setChecked(true);
                             holder.tvRightName.setTextColor(Color.parseColor("#23beae"));
@@ -114,6 +116,7 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                                 selectedRight.put(0, false);
                             if(isSelectDirectFlight)
                                 selectedRight.put(1, false);
+                            onRightMultiSelectLisentener.onRightMultiSelect(selectedAll);
                             notifyDataSetChanged();
                         }
                         selectedAll.put(mLeftId, selectedRight);
@@ -154,7 +157,7 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
     }
 
     public interface OnRightMultiSelectLisentener{
-        void onRightMultiSelect();
+        void onRightMultiSelect(SparseArray<SparseBooleanArray> selectedAll);
     }
 
     public void setOnRightMultiSelectLisentener(OnRightMultiSelectLisentener onRightMultiSelectLisentener){

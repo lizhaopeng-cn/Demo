@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.SparseArray;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,8 @@ public class IFlightFilterLeftAdapter extends RecyclerView.Adapter<IFlightFilter
     private OnLeftSelectListener mOnLeftSelectListener;
     private int selectedPosition;
 
+    private SparseArray<SparseBooleanArray> selectedAll;
+
     public IFlightFilterLeftAdapter(Context context, List<IFlightFilter> iFlightFilterList){
         this.mContext = context;
         this.mIFlightFilterList = iFlightFilterList;
@@ -32,6 +36,8 @@ public class IFlightFilterLeftAdapter extends RecyclerView.Adapter<IFlightFilter
             IFlightFilter iFlightFilter = iFlightFilterList.get(i);
             mLefts.add(iFlightFilter.getLeftName());
         }
+
+        selectedAll = new SparseArray<>();
     }
 
     @Override
@@ -51,6 +57,12 @@ public class IFlightFilterLeftAdapter extends RecyclerView.Adapter<IFlightFilter
                 holder.tvCircleLeftTag.setVisibility(View.VISIBLE);
             }else if(TextUtils.equals(type, IFlightFilter.MULTI_SELECT)){
                 holder.tvCircleLeftTag.setVisibility(View.INVISIBLE);
+            }
+        }
+        if(selectedAll != null && selectedAll.size() > 0){
+            for(int i = 0; i < selectedAll.size(); i++){
+                IFlightFilter iFlightFilter = mIFlightFilterList.get(i);
+
             }
         }
         if(selectedPosition == position){
@@ -98,5 +110,10 @@ public class IFlightFilterLeftAdapter extends RecyclerView.Adapter<IFlightFilter
 
     public void setOnLeftSelectListener(OnLeftSelectListener onLeftSelectListener){
         this.mOnLeftSelectListener = onLeftSelectListener;
+    }
+
+    public void setSelectedAll(SparseArray<SparseBooleanArray> selectedAll){
+        this.selectedAll = selectedAll;
+        notifyDataSetChanged();
     }
 }

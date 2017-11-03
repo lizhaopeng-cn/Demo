@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.SparseArray;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
 
@@ -93,6 +94,13 @@ public class FilterListView extends RelativeLayout{
                     mIFlightFilterLeftAdapter.notifyDataSetChanged();
                     mIFlightFilterRightAdapter.notifyDataSetChanged();
                 }
+            }
+        });
+
+        mIFlightFilterRightAdapter.setOnRightMultiSelectLisentener(new IFlightFilterRightAdapter.OnRightMultiSelectLisentener() {
+            @Override
+            public void onRightMultiSelect(SparseArray<SparseBooleanArray> selectedAll) {
+                mIFlightFilterLeftAdapter.setSelectedAll(selectedAll);
             }
         });
     }
