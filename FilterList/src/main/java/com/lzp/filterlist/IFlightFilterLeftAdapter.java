@@ -3,6 +3,7 @@ package com.lzp.filterlist;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +19,14 @@ import java.util.List;
 
 public class IFlightFilterLeftAdapter extends RecyclerView.Adapter<IFlightFilterLeftAdapter.MyViewHolder>{
     private Context mContext;
-    private List<IFlightFilter> iFlightFilterList;
+    private List<IFlightFilter> mIFlightFilterList;
     private List<String> mLefts;
     private OnLeftSelectListener mOnLeftSelectListener;
     private int selectedPosition;
 
     public IFlightFilterLeftAdapter(Context context, List<IFlightFilter> iFlightFilterList){
         this.mContext = context;
-        this.iFlightFilterList = iFlightFilterList;
+        this.mIFlightFilterList = iFlightFilterList;
         mLefts = new ArrayList<>();
         for(int i = 0; i < iFlightFilterList.size(); i++){
             IFlightFilter iFlightFilter = iFlightFilterList.get(i);
@@ -43,6 +44,15 @@ public class IFlightFilterLeftAdapter extends RecyclerView.Adapter<IFlightFilter
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.tvLeftName.setText(mLefts.get(position));
+        if(mIFlightFilterList != null && mIFlightFilterList.size() > 0){
+            IFlightFilter iFlightFilter = mIFlightFilterList.get(position);
+            String type = iFlightFilter.getSelectType();
+            if(TextUtils.equals(type, IFlightFilter.SINGLE_SELECT)){
+                holder.tvCircleLeftTag.setVisibility(View.VISIBLE);
+            }else if(TextUtils.equals(type, IFlightFilter.MULTI_SELECT)){
+                holder.tvCircleLeftTag.setVisibility(View.INVISIBLE);
+            }
+        }
         if(selectedPosition == position){
             holder.tvLineSelected.setVisibility(View.VISIBLE);
             holder.llLeft.setBackgroundColor(Color.parseColor("#ffffff"));

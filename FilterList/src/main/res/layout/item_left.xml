@@ -3,7 +3,7 @@
     android:orientation="horizontal"
     android:id="@+id/ll_left"
     android:background="#f6f6f6"
-    android:layout_width="185dp"
+    android:layout_width="200dp"
     android:layout_height="56dp">
 
     <LinearLayout
@@ -25,22 +25,22 @@
         android:layout_weight="1"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:textSize="18dp"
+        android:textSize="14dp"
         android:textColor="#666"/>
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
+        android:layout_marginLeft="10dp"
         android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tv_circle_left_tag"
-            android:layout_marginLeft="10dp"
             android:layout_width="7dp"
             android:layout_height="7dp"
             android:background="@drawable/bg_iflight_filter_circle_tag"
             android:layout_gravity="center_vertical"
-            android:visibility="invisible"/>
+            android:visibility="visible"/>
 
     </LinearLayout>
 

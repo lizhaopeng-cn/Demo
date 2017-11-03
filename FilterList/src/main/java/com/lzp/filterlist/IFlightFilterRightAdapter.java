@@ -27,7 +27,7 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
     private List<IFlightFilter> mIFlightFilterList;
     private SparseArray<SparseBooleanArray> selectedAll;
 
-    private boolean isSelectUnlimited; //是否选择的不限
+    private boolean isSelectUnlimited = true; //是否选择的不限
     private boolean isSelectDirectFlight; //是否选择的直飞
 
     private OnRightMultiSelectLisentener onRightMultiSelectLisentener; //多选的回调
@@ -42,8 +42,12 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
         for(int i = 0; i < mIFlightFilterList.size(); i++){
             SparseBooleanArray selectedRight = new SparseBooleanArray();
             for(int j = 0; j < mIFlightFilterList.get(i).getRights().size(); j++){
-                selectedRight.put(j, false);
-                selectedAll.put(i, selectedRight);
+                if(j == 0){
+                    selectedRight.put(j, true);
+                }else{
+                    selectedRight.put(j, false);
+                    selectedAll.put(i, selectedRight);
+                }
             }
         }
     }
@@ -96,7 +100,6 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                                 holder.tvRightName.setTextColor(Color.parseColor("#23beae"));
                                 selectedRight.put(position, true);
                                 selectedAll.put(mLeftId, selectedRight);
-                                notifyDataSetChanged();
                             }
                         }else if(holder.checkBox.isChecked()){
                             holder.checkBox.setChecked(false);
@@ -106,11 +109,12 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                             holder.checkBox.setChecked(true);
                             holder.tvRightName.setTextColor(Color.parseColor("#23beae"));
                             selectedRight.put(position, true);
-                            if(isSelectUnlimited)
+                            if(isSelectUnlimited){
                                 selectedRight.put(0, false);
-                            if(isSelectDirectFlight)
+                            }
+                            if(isSelectDirectFlight){
                                 selectedRight.put(1, false);
-                            notifyDataSetChanged();
+                            }
                         }
                         selectedAll.put(mLeftId, selectedRight);
                     }else if(TextUtils.equals(type, IFlightFilter.SINGLE_SELECT)){
@@ -122,9 +126,9 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                             holder.tvRightName.setTextColor(Color.parseColor("#23beae"));
                             selectedRight.put(position, true);
                             selectedAll.put(mLeftId, selectedRight);
-                            notifyDataSetChanged();
                         }
                     }
+                    notifyDataSetChanged();
                 }
             }
         });
