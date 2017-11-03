@@ -19,9 +19,9 @@ import java.util.List;
 public class FilterListView extends RelativeLayout{
 
     private Context mContext;
-    private List<String> mLefts;
+//    private List<String> mLefts;
+//    private SparseArray<List<String>> mRights;
 //    private List<String> rightsValue;
-    private SparseArray<List<String>> mRights;
     private List<IFlightFilter> iFlightFilterList;
     private RecyclerView rvLeft;
     private RecyclerView rvRight;
@@ -59,21 +59,20 @@ public class FilterListView extends RelativeLayout{
     }
 
     private void initData() {
-        mLefts = new ArrayList<>();
-        mRights = new SparseArray<>();
-        for(int i = 0; i < iFlightFilterList.size(); i++){
-            IFlightFilter iFlightFilter = iFlightFilterList.get(i);
-            mLefts.add(iFlightFilter.getLeftName());
-            mRights.put(i, iFlightFilter.getRights());
-        }
+//        mLefts = new ArrayList<>();
+//        mRights = new SparseArray<>();
+//        for(int i = 0; i < iFlightFilterList.size(); i++){
+//            IFlightFilter iFlightFilter = iFlightFilterList.get(i);
+//            mLefts.add(iFlightFilter.getLeftName());
+//            mRights.put(i, iFlightFilter.getRights());
+//        }
     }
 
     private void initLeftView() {
         rvLeft = dlgFilter.findViewById(R.id.rv_iflight_filter_left);
         rvLeft.setLayoutManager(new LinearLayoutManager(mContext));
         rvLeft.addItemDecoration(new DividerItemDecoration(mContext,DividerItemDecoration.VERTICAL));
-        mIFlightFilterLeftAdapter = new IFlightFilterLeftAdapter(mContext);
-        mIFlightFilterLeftAdapter.setLeftValue(mLefts);
+        mIFlightFilterLeftAdapter = new IFlightFilterLeftAdapter(mContext, iFlightFilterList);
         rvLeft.setAdapter(mIFlightFilterLeftAdapter);
     }
 
@@ -81,9 +80,7 @@ public class FilterListView extends RelativeLayout{
         rvRight = dlgFilter.findViewById(R.id.rv_iflight_filter_right);
         rvRight.setLayoutManager(new LinearLayoutManager(mContext));
         rvRight.addItemDecoration(new DividerItemDecoration(mContext,DividerItemDecoration.VERTICAL));
-        mIFlightFilterRightAdapter = new IFlightFilterRightAdapter(mContext);
-        mIFlightFilterRightAdapter.setRightValue(mRights.get(0));
-        mIFlightFilterRightAdapter.setIFlightFilterDate(iFlightFilterList);
+        mIFlightFilterRightAdapter = new IFlightFilterRightAdapter(mContext, iFlightFilterList);
         rvRight.setAdapter(mIFlightFilterRightAdapter);
     }
 
@@ -93,7 +90,6 @@ public class FilterListView extends RelativeLayout{
             public void onLeftSelect(int position) {
                 if(mIFlightFilterRightAdapter != null){
                     mIFlightFilterRightAdapter.setLeftId(position);
-                    mIFlightFilterRightAdapter.setRightValue(mRights.get(position));
                     mIFlightFilterLeftAdapter.notifyDataSetChanged();
                     mIFlightFilterRightAdapter.notifyDataSetChanged();
                 }

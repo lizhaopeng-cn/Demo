@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,8 +28,8 @@ import java.util.List;
 public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilterRightAdapter.MyViewHolder> {
 
     private Context mContext;
-    private int mLeftId;
     private List<String> mRights;
+    private int mLeftId;
     private List<IFlightFilter> mIFlightFilterList;
 //    private SparseBooleanArray selectedRight;
     private SparseArray<SparseBooleanArray> selectedAll;
@@ -36,22 +37,15 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
     private boolean isSelectUnlimited; //是否选择的不限
     private boolean isSelectDirectFlight; //是否选择的直飞
 
-    public IFlightFilterRightAdapter(Context context){
+    private OnRightMultiSelectLisentener onRightMultiSelectLisentener; //多选的回调
+
+    public IFlightFilterRightAdapter(Context context, List<IFlightFilter> iFlightFilterList){
         this.mContext = context;
+        this.mIFlightFilterList = iFlightFilterList;
+
+        mRights = iFlightFilterList.get(mLeftId).getRights();
+
         selectedAll = new SparseArray<>();
-    }
-
-    public void setRightValue(List<String> rights){
-        this.mRights = rights;
-    }
-
-    public void setLeftId(int leftId){
-        mLeftId = leftId;
-    }
-
-    public void setIFlightFilterDate(List<IFlightFilter> iFlightFilterList){
-        mIFlightFilterList = iFlightFilterList;
-
         for(int i = 0; i < mIFlightFilterList.size(); i++){
             SparseBooleanArray selectedRight = new SparseBooleanArray();
             for(int j = 0; j < mIFlightFilterList.get(i).getRights().size(); j++){
@@ -59,6 +53,19 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                 selectedAll.put(i, selectedRight);
             }
         }
+    }
+
+    public void setLeftId(int leftId){
+        mLeftId = leftId;
+        mRights = mIFlightFilterList.get(mLeftId).getRights();
+    }
+
+    public List<String> getRightsValue(){
+        return mRights = mIFlightFilterList.get(mLeftId).getRights();
+    }
+
+    public void setIFlightFilterDate(List<IFlightFilter> iFlightFilterList){
+
     }
 
     @Override
@@ -151,5 +158,13 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
             tvRightName = itemView.findViewById(R.id.tv_right_name);
             checkBox = itemView.findViewById(R.id.checkbox);
         }
+    }
+
+    public interface OnRightMultiSelectLisentener{
+        void onRightMultiSelect();
+    }
+
+    public void setOnRightMultiSelectLisentener(OnRightMultiSelectLisentener onRightMultiSelectLisentener){
+        this.onRightMultiSelectLisentener = onRightMultiSelectLisentener;
     }
 }

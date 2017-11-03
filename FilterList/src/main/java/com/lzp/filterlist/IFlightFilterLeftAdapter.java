@@ -3,12 +3,14 @@ package com.lzp.filterlist;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,17 +19,24 @@ import java.util.List;
 
 public class IFlightFilterLeftAdapter extends RecyclerView.Adapter<IFlightFilterLeftAdapter.MyViewHolder>{
     private Context mContext;
+    private List<IFlightFilter> iFlightFilterList;
     private List<String> mLefts;
     private OnLeftSelectListener mOnLeftSelectListener;
     private int selectedPosition;
 
-    public IFlightFilterLeftAdapter(Context context){
+    public IFlightFilterLeftAdapter(Context context, List<IFlightFilter> iFlightFilterList){
         this.mContext = context;
+        this.iFlightFilterList = iFlightFilterList;
+        mLefts = new ArrayList<>();
+        for(int i = 0; i < iFlightFilterList.size(); i++){
+            IFlightFilter iFlightFilter = iFlightFilterList.get(i);
+            mLefts.add(iFlightFilter.getLeftName());
+        }
     }
 
-    public void setLeftValue(List<String> lefts){
-        this.mLefts = lefts;
-    }
+//    public void setLeftValue(List<String> lefts){
+//        this.mLefts = lefts;
+//    }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -40,6 +49,9 @@ public class IFlightFilterLeftAdapter extends RecyclerView.Adapter<IFlightFilter
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.tvLeftName.setText(mLefts.get(position));
+//        if(){
+//
+//        }
         if(selectedPosition == position){
             holder.tvLineSelected.setVisibility(View.VISIBLE);
             holder.llLeft.setBackgroundColor(Color.parseColor("#ffffff"));
