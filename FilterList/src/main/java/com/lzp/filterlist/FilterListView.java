@@ -82,7 +82,8 @@ public class FilterListView extends RelativeLayout{
         rvRight.setLayoutManager(new LinearLayoutManager(mContext));
         rvRight.addItemDecoration(new DividerItemDecoration(mContext,DividerItemDecoration.VERTICAL));
         mIFlightFilterRightAdapter = new IFlightFilterRightAdapter(mContext);
-        mIFlightFilterRightAdapter.setRightValue(mRights.valueAt(0));
+        mIFlightFilterRightAdapter.setRightValue(mRights.get(0));
+        mIFlightFilterRightAdapter.setIFlightFilterDate(iFlightFilterList);
         rvRight.setAdapter(mIFlightFilterRightAdapter);
     }
 
@@ -91,6 +92,7 @@ public class FilterListView extends RelativeLayout{
             @Override
             public void onLeftSelect(int position) {
                 if(mIFlightFilterRightAdapter != null){
+                    mIFlightFilterRightAdapter.setLeftId(position);
                     mIFlightFilterRightAdapter.setRightValue(mRights.get(position));
                     mIFlightFilterLeftAdapter.notifyDataSetChanged();
                     mIFlightFilterRightAdapter.notifyDataSetChanged();
