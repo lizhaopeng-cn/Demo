@@ -21,54 +21,19 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
 
     private Context mContext;
 
-    private ColorStateList mTextColor;
-    private float mTextSize;
-    private int mLabelBgResId;
     private int mTextPaddingLeft;
     private int mTextPaddingTop;
     private int mTextPaddingRight;
     private int mTextPaddingBottom;
     private int mWordMargin;
     private int mLineMargin;
-    private SelectType mSelectType;
-    private int mMaxSelect;
+    private ColorStateList mTextColor;
+    private float mTextSize;
+    private int mLabelBgResId;
 
     private ArrayList<String> mLabels = new ArrayList<>();
-    //保存选中的label的位置
-    private ArrayList<Integer> mSelectLabels = new ArrayList<>();
 
     private OnLabelClickListener mLabelClickListener;
-    private OnLabelSelectChangeListener mLabelSelectChangeListener;
-
-    /**
-     * Label的选择类型
-     */
-    public enum SelectType {
-        //不可选中，也不响应选中事件回调。（默认）
-        NONE(1),
-        //单选
-        SINGLE(2),
-        //多选
-        MULTI(3);
-
-        int value;
-
-        SelectType(int value) {
-            this.value = value;
-        }
-
-        static SelectType get(int value) {
-            switch (value) {
-                case 1:
-                    return NONE;
-                case 2:
-                    return SINGLE;
-                case 3:
-                    return MULTI;
-            }
-            return NONE;
-        }
-    }
 
     public LabelsView(Context context) {
         super(context);
@@ -90,13 +55,7 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
     private void getAttrs(Context context, AttributeSet attrs) {
         if (attrs != null) {
             TypedArray mTypedArray = context.obtainStyledAttributes(attrs, R.styleable.labels_view);
-            int type = mTypedArray.getInt(R.styleable.labels_view_selectType, 1);
-            mSelectType = SelectType.get(type);
 
-            mMaxSelect = mTypedArray.getInteger(R.styleable.labels_view_maxSelect, 0);
-            mTextColor = mTypedArray.getColorStateList(R.styleable.labels_view_labelTextColor);
-            mTextSize = mTypedArray.getDimension(R.styleable.labels_view_labelTextSize,
-                    sp2px(context, 14));
             mTextPaddingLeft = mTypedArray.getDimensionPixelOffset(
                     R.styleable.labels_view_labelTextPaddingLeft, 0);
             mTextPaddingTop = mTypedArray.getDimensionPixelOffset(
@@ -107,6 +66,9 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
                     R.styleable.labels_view_labelTextPaddingBottom, 0);
             mLineMargin = mTypedArray.getDimensionPixelOffset(R.styleable.labels_view_lineMargin, 0);
             mWordMargin = mTypedArray.getDimensionPixelOffset(R.styleable.labels_view_wordMargin, 0);
+            mTextColor = mTypedArray.getColorStateList(R.styleable.labels_view_labelTextColor);
+            mTextSize = mTypedArray.getDimension(R.styleable.labels_view_labelTextSize,
+                    sp2px(context, 14));
             mLabelBgResId = mTypedArray.getResourceId(R.styleable.labels_view_labelBackground, 0);
             mTypedArray.recycle();
         }
@@ -220,10 +182,7 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
     private static final String KEY_PADDING_STATE = "key_padding_state";
     private static final String KEY_WORD_MARGIN_STATE = "key_word_margin_state";
     private static final String KEY_LINE_MARGIN_STATE = "key_line_margin_state";
-    private static final String KEY_SELECT_TYPE_STATE = "key_select_type_state";
-    private static final String KEY_MAX_SELECT_STATE = "key_max_select_state";
     private static final String KEY_LABELS_STATE = "key_labels_state";
-    private static final String KEY_SELECT_LABELS_STATE = "key_select_labels_state";
 
     @Override
     protected Parcelable onSaveInstanceState() {
@@ -246,17 +205,9 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
         bundle.putInt(KEY_WORD_MARGIN_STATE, mWordMargin);
         //保存行间隔
         bundle.putInt(KEY_LINE_MARGIN_STATE, mLineMargin);
-        //保存标签的选择类型
-        bundle.putInt(KEY_SELECT_TYPE_STATE, mSelectType.value);
-        //保存标签的最大选择数量
-        bundle.putInt(KEY_MAX_SELECT_STATE, mMaxSelect);
         //保存标签列表
         if (!mLabels.isEmpty()) {
             bundle.putStringArrayList(KEY_LABELS_STATE, mLabels);
-        }
-        //保存已选择的标签列表
-        if (!mSelectLabels.isEmpty()) {
-            bundle.putIntegerArrayList(KEY_SELECT_LABELS_STATE, mSelectLabels);
         }
 
         return bundle;
@@ -290,24 +241,10 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
             setWordMargin(bundle.getInt(KEY_WORD_MARGIN_STATE, mWordMargin));
             //恢复行间隔
             setLineMargin(bundle.getInt(KEY_LINE_MARGIN_STATE, mLineMargin));
-            //恢复标签的选择类型
-            setSelectType(SelectType.get(bundle.getInt(KEY_SELECT_TYPE_STATE, mSelectType.value)));
-            //恢复标签的最大选择数量
-            setMaxSelect(bundle.getInt(KEY_MAX_SELECT_STATE, mMaxSelect));
             //恢复标签列表
             ArrayList<String> labels = bundle.getStringArrayList(KEY_LABELS_STATE);
             if (labels != null && !labels.isEmpty()) {
                 setLabels(labels);
-            }
-            //恢复已选择的标签列表
-            ArrayList<Integer> selectLabel = bundle.getIntegerArrayList(KEY_SELECT_LABELS_STATE);
-            if (selectLabel != null && !selectLabel.isEmpty()) {
-                int size = selectLabel.size();
-                int[] positions = new int[size];
-                for (int i = 0; i < size; i++) {
-                    positions[i] = selectLabel.get(i);
-                }
-                setSelects(positions);
             }
             return;
         }
@@ -320,8 +257,6 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
      * @param labels
      */
     public void setLabels(ArrayList<String> labels) {
-        //清空原有的标签
-        clearAllSelect();
         removeAllViews();
         mLabels.clear();
 
@@ -356,95 +291,18 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
         label.setTag(position);
         label.setOnClickListener(this);
         addView(label);
+        mLabels.add(text);
     }
 
     @Override
     public void onClick(View v) {
         if (v instanceof TextView) {
             TextView label = (TextView) v;
-            if (mSelectType != SelectType.NONE) {
-                if (label.isSelected()) {
-                    setLabelSelect(label, false);
-                } else if (mSelectType == SelectType.SINGLE) {
-                    clearAllSelect();
-                    setLabelSelect(label, true);
-                } else if (mSelectType == SelectType.MULTI
-                        && (mMaxSelect <= 0 || mMaxSelect > mSelectLabels.size())) {
-                    setLabelSelect(label, true);
-                }
-            }
 
             if (mLabelClickListener != null) {
                 mLabelClickListener.onLabelClick(label, label.getText().toString(), (int) v.getTag());
             }
         }
-    }
-
-    private void setLabelSelect(TextView label, boolean isSelect) {
-        if (label.isSelected() != isSelect) {
-            label.setSelected(isSelect);
-            if (isSelect) {
-                mSelectLabels.add((Integer) label.getTag());
-            } else {
-                mSelectLabels.remove((Integer) label.getTag());
-            }
-            if (mLabelSelectChangeListener != null) {
-                mLabelSelectChangeListener.onLabelSelectChange(label, label.getText().toString(),
-                        isSelect, (int) label.getTag());
-            }
-        }
-    }
-
-    /**
-     * 取消所有选中的label
-     */
-    public void clearAllSelect() {
-        int count = getChildCount();
-        for (int i = 0; i < count; i++) {
-            setLabelSelect((TextView) getChildAt(i), false);
-        }
-        mSelectLabels.clear();
-    }
-
-    /**
-     * 设置选中label
-     *
-     * @param positions
-     */
-    public void setSelects(int... positions) {
-        if (mSelectType != SelectType.NONE) {
-            ArrayList<TextView> selectLabels = new ArrayList<>();
-            int count = getChildCount();
-            int size = mSelectType == SelectType.SINGLE ? 1 : mMaxSelect;
-            for (int p : positions) {
-                if (p < count) {
-                    TextView label = (TextView) getChildAt(p);
-                    if (!selectLabels.contains(label)) {
-                        setLabelSelect(label, true);
-                        selectLabels.add(label);
-                    }
-                    if (size > 0 && selectLabels.size() == size) {
-                        break;
-                    }
-                }
-            }
-
-            for (int i = 0; i < count; i++) {
-                TextView label = (TextView) getChildAt(i);
-                if (!selectLabels.contains(label)) {
-                    setLabelSelect(label, false);
-                }
-            }
-        }
-    }
-
-    /**
-     * 获取选中的label
-     *
-     * @return
-     */
-    public ArrayList<Integer> getSelectLabels() {
-        return mSelectLabels;
     }
 
     /**
@@ -486,22 +344,6 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
         }
     }
 
-    public int getTextPaddingLeft() {
-        return mTextPaddingLeft;
-    }
-
-    public int getTextPaddingTop() {
-        return mTextPaddingTop;
-    }
-
-    public int getTextPaddingRight() {
-        return mTextPaddingRight;
-    }
-
-    public int getTextPaddingBottom() {
-        return mTextPaddingBottom;
-    }
-
     /**
      * 设置标签的文字大小（单位是px）
      *
@@ -516,10 +358,6 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
                 label.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
             }
         }
-    }
-
-    public float getLabelTextSize() {
-        return mTextSize;
     }
 
     /**
@@ -545,10 +383,6 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
         }
     }
 
-    public ColorStateList getLabelTextColor() {
-        return mTextColor;
-    }
-
     /**
      * 设置行间隔
      */
@@ -557,10 +391,6 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
             mLineMargin = margin;
             requestLayout();
         }
-    }
-
-    public int getLineMargin() {
-        return mLineMargin;
     }
 
     /**
@@ -573,44 +403,12 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
         }
     }
 
-    public int getWordMargin() {
-        return mWordMargin;
-    }
-
     /**
-     * 设置标签的选择类型
-     *
-     * @param selectType
+     * sp转px
      */
-    public void setSelectType(SelectType selectType) {
-        if (mSelectType != selectType) {
-            mSelectType = selectType;
-            //选择类型发生改变，就要恢复到初始状态。
-            clearAllSelect();
-        }
-    }
-
-    public SelectType getSelectType() {
-        return mSelectType;
-    }
-
-    /**
-     * 设置最大的选择数量
-     *
-     * @param maxSelect
-     */
-    public void setMaxSelect(int maxSelect) {
-        if (mMaxSelect != maxSelect) {
-            mMaxSelect = maxSelect;
-            if (mSelectType == SelectType.MULTI) {
-                //最大选择数量发生改变，就要恢复到初始状态。
-                clearAllSelect();
-            }
-        }
-    }
-
-    public int getMaxSelect() {
-        return mMaxSelect;
+    public static int sp2px(Context context, float spVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
+                spVal, context.getResources().getDisplayMetrics());
     }
 
     /**
@@ -622,29 +420,8 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
         mLabelClickListener = l;
     }
 
-    /**
-     * 设置标签的选择监听
-     *
-     * @param l
-     */
-    public void setOnLabelSelectChangeListener(OnLabelSelectChangeListener l) {
-        mLabelSelectChangeListener = l;
-    }
-
-    /**
-     * sp转px
-     */
-    public static int sp2px(Context context, float spVal) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
-                spVal, context.getResources().getDisplayMetrics());
-    }
-
     public interface OnLabelClickListener {
         void onLabelClick(View label, String labelText, int position);
-    }
-
-    public interface OnLabelSelectChangeListener {
-        void onLabelSelectChange(View label, String labelText, boolean isSelect, int position);
     }
 
 }

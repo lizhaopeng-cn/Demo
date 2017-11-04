@@ -31,8 +31,6 @@
         //标签的字体大小
         //行与行的距离
         //标签与标签的距离
-        //标签的选择类型 有单选、多选、不可选三种类型
-        //标签的最大选择数量，只有多选的时候才有用，0为不限数量
         -->
         <com.lzp.filterlist.LabelsView
             android:id="@+id/labels"
@@ -46,9 +44,7 @@
             app:labelTextColor="@drawable/label_text_color"
             app:labelTextSize="14sp"
             app:lineMargin="10dp"
-            app:wordMargin="10dp"
-            app:selectType="SINGLE"
-            app:maxSelect="5" />
+            app:wordMargin="10dp"/>
 
     </ScrollView>
 
