@@ -9,6 +9,9 @@
         android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableRight="@mipmap/ic_launcher_round"
+        android:drawablePadding="50dp"
+        android:paddingRight="20dp"
         android:text="Hello World!"  />
 
     <android.support.v7.widget.RecyclerView

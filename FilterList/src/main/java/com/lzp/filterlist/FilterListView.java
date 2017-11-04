@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
@@ -29,6 +30,8 @@ public class FilterListView extends RelativeLayout{
     private IFlightFilterLeftAdapter mIFlightFilterLeftAdapter;
     private IFlightFilterRightAdapter mIFlightFilterRightAdapter;
     private RelativeLayout dlgFilter;
+
+    private LabelsView labelsView;
 
     public FilterListView(Context context, List<IFlightFilter> iFlightFilterList) {
         super(context);
@@ -67,6 +70,38 @@ public class FilterListView extends RelativeLayout{
 //            mLefts.add(iFlightFilter.getLeftName());
 //            mRights.put(i, iFlightFilter.getRights());
 //        }
+        labelsView = (LabelsView) findViewById(R.id.labels);
+        ArrayList<String> label = new ArrayList<>();
+        label.add("Android");
+        label.add("IOS");
+        label.add("前端");
+        label.add("后台");
+        label.add("微信开发");
+        label.add("游戏开发");
+        label.add("Java");
+        label.add("JavaScript");
+        label.add("C++");
+        label.add("PHP");
+        label.add("Python");
+        label.add("Swift");
+        labelsView.setLabels(label); //直接设置一个字符串数组就可以了。
+
+        //标签的点击监听
+        labelsView.setOnLabelClickListener(new LabelsView.OnLabelClickListener() {
+            @Override
+            public void onLabelClick(View label, String labelText, int position) {
+                //label是被点击的标签，labelText是标签的文字，position是标签的位置。
+//                labelsView.removeViewAt(position);
+                labelsView.addLabel("你好 X",position);
+            }
+        });
+        //标签的选中监听
+        labelsView.setOnLabelSelectChangeListener(new LabelsView.OnLabelSelectChangeListener() {
+            @Override
+            public void onLabelSelectChange(View label, String labelText, boolean isSelect, int position) {
+                //label是被点击的标签，labelText是标签的文字，isSelect是是否选中，position是标签的位置。
+            }
+        });
     }
 
     private void initLeftView() {

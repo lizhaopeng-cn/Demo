@@ -116,9 +116,9 @@ public class MainActivity extends AppCompatActivity {
         iFlightFilters = new ArrayList<>();
         iFlightFilters.add(iFlightFilter1);
         iFlightFilters.add(iFlightFilter2);
+        iFlightFilters.add(iFlightFilter5);
         iFlightFilters.add(iFlightFilter3);
         iFlightFilters.add(iFlightFilter4);
-        iFlightFilters.add(iFlightFilter5);
 
     }
 

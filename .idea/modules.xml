@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/APP/APP.iml" filepath="$PROJECT_DIR$/APP/APP.iml" />
       <module fileurl="file://$PROJECT_DIR$/Demo.iml" filepath="$PROJECT_DIR$/Demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/FilterList/FilterList.iml" filepath="$PROJECT_DIR$/FilterList/FilterList.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FilterList/FilterList.iml" filepath="$PROJECT_DIR$/FilterList/FilterList.iml" />
       <module fileurl="file://$PROJECT_DIR$/Gradle/Gradle.iml" filepath="$PROJECT_DIR$/Gradle/Gradle.iml" />
     </modules>
   </component>
