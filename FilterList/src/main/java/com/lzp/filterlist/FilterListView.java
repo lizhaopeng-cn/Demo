@@ -57,6 +57,8 @@ public class FilterListView extends RelativeLayout{
 
         initData();
 
+        initLabelView();
+
         initLeftView();
 
         initRightView();
@@ -72,30 +74,10 @@ public class FilterListView extends RelativeLayout{
 //            mLefts.add(iFlightFilter.getLeftName());
 //            mRights.put(i, iFlightFilter.getRights());
 //        }
+    }
+
+    private void initLabelView() {
         labelsView = findViewById(R.id.labels);
-//        ArrayList<String> label = new ArrayList<>();
-//        label.add("Android");
-//        label.add("IOS");
-//        label.add("前端");
-//        label.add("后台");
-//        label.add("微信开发");
-//        label.add("游戏开发");
-//        label.add("Java");
-//        label.add("JavaScript");
-//        label.add("C++");
-//        label.add("PHP");
-//        label.add("Python");
-//        label.add("Swift");
-//        labelsView.setLabels(label); //直接设置一个字符串数组就可以了。
-//
-        //标签的点击监听
-        labelsView.setOnLabelClickListener(new LabelsView.OnLabelClickListener() {
-            @Override
-            public void onLabelClick(View label, String labelText, int position) {
-                //label是被点击的标签，labelText是标签的文字，position是标签的位置。
-                labelsView.removeViewAt(position);
-            }
-        });
     }
 
     private void initLeftView() {
@@ -134,6 +116,15 @@ public class FilterListView extends RelativeLayout{
             }
         });
 
+        //标签的点击监听
+        labelsView.setOnLabelClickListener(new LabelsView.OnLabelClickListener() {
+            @Override
+            public void onLabelClick(View label, String labelText, int position) {
+                //label是被点击的标签，labelText是标签的文字，position是标签的位置。
+                labelsView.removeViewAt(position);
+            }
+        });
+
         mIFlightFilterRightAdapter.setOnRightMultiSelectCallbackLebelLisentener(new IFlightFilterRightAdapter.OnRightMultiSelectCallbackLebelLisentener() {
             @Override
             public void onRightMultiSelectCallbackLebel(List<String> updateTextList, boolean isAdd) {
@@ -152,26 +143,12 @@ public class FilterListView extends RelativeLayout{
                                 }
                             }
                         }
+                        for(int i = 0; i < deleteViews.size(); i++){
+                            labelsView.removeView(deleteViews.get(i));
+                        }
                     }
-                    for(int i = 0; i < deleteViews.size(); i++){
-                        labelsView.removeView(deleteViews.get(i));
-                    }
-
                 }
             }
         });
     }
-
-//    public boolean getLabelHavaDirectFlight(){
-//        for(int i = 0; i < labelsView.getChildCount(); i++){
-//            String label = ((TextView)labelsView.getChildAt(i)).getText().toString();
-//            if(TextUtils.equals(label, "直飞")){
-//                return true;
-//            }else{
-//                return false;
-//            }
-//        }
-//        return false;
-//    }
-
 }

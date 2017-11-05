@@ -152,31 +152,43 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                             updateTextList = new ArrayList<String>();
                             updateTextList.add(mIFlightFilterList.get(mLeftId).getRights().get(position));
                         }else if(!holder.checkBox.isChecked()){
+                            //更新lebel数据
+                            if(TextUtils.equals(mIFlightFilterList.get(mLeftId).getRights().get(1), "直飞")){
+                                if(selectedRight.get(1)){
+                                    isAdd = false;
+                                    updateTextList.add(mIFlightFilterList.get(mLeftId).getRights().get(1));
+                                    if(updateTextList.size() > 0){
+                                        onRightMultiSelectCallbackLebelLisentener.onRightMultiSelectCallbackLebel(updateTextList, isAdd);
+                                    }
+                                    updateTextList.clear();
+
+                                    isAdd = true;
+                                    updateTextList = new ArrayList<String>();
+                                    updateTextList.add(mIFlightFilterList.get(mLeftId).getRights().get(position));
+//                                }
+                                }else{
+                                    //点击直飞
+                                    isAdd = true;
+                                    updateTextList = new ArrayList<String>();
+                                    updateTextList.add(mIFlightFilterList.get(mLeftId).getRights().get(position));
+                                }
+                            }else{
+                                isAdd = true;
+                                updateTextList = new ArrayList<String>();
+                                updateTextList.add(mIFlightFilterList.get(mLeftId).getRights().get(position));
+                            }
+
                             holder.checkBox.setChecked(true);
                             holder.tvRightName.setTextColor(Color.parseColor("#23beae"));
                             selectedRight.put(position, true);
                             if(isSelectUnlimited)
                                 selectedRight.put(0, false);
-                            if(isSelectDirectFlight)
-                                selectedRight.put(1, false);
+                            if(TextUtils.equals(mIFlightFilterList.get(mLeftId).getRights().get(1), "直飞")){
+                                if(isSelectDirectFlight)
+                                    selectedRight.put(1, false);
+                            }
                             onRightMultiSelectCallbackLeftLisentener.onRightMultiSelectCallbackLeft(selectedAll);
                             notifyDataSetChanged();
-                            //更新lebel数据
-                            if(TextUtils.equals(mIFlightFilterList.get(mLeftId).getRights().get(1), "直飞")){
-                                if(selectedRight.get(1)){
-//                                if(filterListView.getLabelHavaDirectFlight()){
-                                    isAdd = false;
-                                    updateTextList.add(mIFlightFilterList.get(mLeftId).getRights().get(position));
-                                    if(updateTextList.size() > 0){
-                                        onRightMultiSelectCallbackLebelLisentener.onRightMultiSelectCallbackLebel(updateTextList, isAdd);
-                                    }
-                                    updateTextList.clear();
-//                                }
-                                }
-                            }
-                            isAdd = true;
-                            updateTextList = new ArrayList<String>();
-                            updateTextList.add(mIFlightFilterList.get(mLeftId).getRights().get(position));
                         }
                         selectedAll.put(mLeftId, selectedRight);
                         if(updateTextList.size() > 0){
