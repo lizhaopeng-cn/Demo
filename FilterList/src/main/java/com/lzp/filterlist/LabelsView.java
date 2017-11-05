@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lzp48947 on 2017/11/4.
@@ -31,7 +32,8 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
     private float mTextSize;
     private int mLabelBgResId;
 
-    private ArrayList<String> mLabels = new ArrayList<>();
+//    private ArrayList<String> mLabels = new ArrayList<>();
+    private List<View> labelViews = new ArrayList<>();
 
     private OnLabelClickListener mLabelClickListener;
 
@@ -175,123 +177,114 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
     }
 
     /*  用于保存View的信息的key  */
-    private static final String KEY_SUPER_STATE = "key_super_state";
-    private static final String KEY_TEXT_COLOR_STATE = "key_text_color_state";
-    private static final String KEY_TEXT_SIZE_STATE = "key_text_size_state";
-    private static final String KEY_BG_RES_ID_STATE = "key_bg_res_id_state";
-    private static final String KEY_PADDING_STATE = "key_padding_state";
-    private static final String KEY_WORD_MARGIN_STATE = "key_word_margin_state";
-    private static final String KEY_LINE_MARGIN_STATE = "key_line_margin_state";
-    private static final String KEY_LABELS_STATE = "key_labels_state";
+//    private static final String KEY_SUPER_STATE = "key_super_state";
+//    private static final String KEY_TEXT_COLOR_STATE = "key_text_color_state";
+//    private static final String KEY_TEXT_SIZE_STATE = "key_text_size_state";
+//    private static final String KEY_BG_RES_ID_STATE = "key_bg_res_id_state";
+//    private static final String KEY_PADDING_STATE = "key_padding_state";
+//    private static final String KEY_WORD_MARGIN_STATE = "key_word_margin_state";
+//    private static final String KEY_LINE_MARGIN_STATE = "key_line_margin_state";
+//    private static final String KEY_LABELS_STATE = "key_labels_state";
+//
+//    @Override
+//    protected Parcelable onSaveInstanceState() {
+//
+//        Bundle bundle = new Bundle();
+//        //保存父类的信息
+//        bundle.putParcelable(KEY_SUPER_STATE, super.onSaveInstanceState());
+//        //保存标签文字颜色
+//        if (mTextColor != null) {
+//            bundle.putParcelable(KEY_TEXT_COLOR_STATE, mTextColor);
+//        }
+//        //保存标签文字大小
+//        bundle.putFloat(KEY_TEXT_SIZE_STATE, mTextSize);
+//        //保存标签背景
+//        bundle.putInt(KEY_BG_RES_ID_STATE, mLabelBgResId);
+//        //保存标签内边距
+//        bundle.putIntArray(KEY_PADDING_STATE, new int[]{mTextPaddingLeft, mTextPaddingTop,
+//                mTextPaddingRight, mTextPaddingBottom});
+//        //保存标签间隔
+//        bundle.putInt(KEY_WORD_MARGIN_STATE, mWordMargin);
+//        //保存行间隔
+//        bundle.putInt(KEY_LINE_MARGIN_STATE, mLineMargin);
+//        //保存标签列表
+//        if (labelViews.size() > 0) {
+//            bundle.putStringArrayList(KEY_LABELS_STATE, labelViews);
+//        }
+//
+//        return bundle;
+//    }
+//
+//    @Override
+//    protected void onRestoreInstanceState(Parcelable state) {
+//        if (state instanceof Bundle) {
+//            Bundle bundle = (Bundle) state;
+//            //恢复父类信息
+//            super.onRestoreInstanceState(bundle.getParcelable(KEY_SUPER_STATE));
+//
+//            //恢复标签文字颜色
+//            ColorStateList color = bundle.getParcelable(KEY_TEXT_COLOR_STATE);
+//            if (color != null) {
+//                setLabelTextColor(color);
+//            }
+//            //恢复标签文字大小
+//            setLabelTextSize(bundle.getFloat(KEY_TEXT_SIZE_STATE, mTextSize));
+//            //恢复标签背景
+//            int resId = bundle.getInt(KEY_BG_RES_ID_STATE, mLabelBgResId);
+//            if (resId != 0) {
+//                setLabelBackgroundResource(resId);
+//            }
+//            //恢复标签内边距
+//            int[] padding = bundle.getIntArray(KEY_PADDING_STATE);
+//            if (padding != null && padding.length == 4) {
+//                setLabelTextPadding(padding[0], padding[1], padding[2], padding[3]);
+//            }
+//            //恢复标签间隔
+//            setWordMargin(bundle.getInt(KEY_WORD_MARGIN_STATE, mWordMargin));
+//            //恢复行间隔
+//            setLineMargin(bundle.getInt(KEY_LINE_MARGIN_STATE, mLineMargin));
+//            //恢复标签列表
+//            ArrayList<String> labels = bundle.getStringArrayList(KEY_LABELS_STATE);
+//            if (labels != null && !labels.isEmpty()) {
+//                setLabels(labels);
+//            }
+//            return;
+//        }
+//        super.onRestoreInstanceState(state);
+//    }
+//
+//    /**
+//     * 设置标签列表
+//     *
+//     * @param labels
+//     */
+//    public void setLabels(ArrayList<String> labels) {
+//        removeAllViews();
+//        mLabels.clear();
+//
+//        if (labels != null) {
+//            mLabels.addAll(labels);
+//            int size = labels.size();
+//            for (int i = 0; i < size; i++) {
+//                addLabel(labels.get(i), i);
+//            }
+//        }
+//    }
 
-    @Override
-    protected Parcelable onSaveInstanceState() {
-
-        Bundle bundle = new Bundle();
-        //保存父类的信息
-        bundle.putParcelable(KEY_SUPER_STATE, super.onSaveInstanceState());
-        //保存标签文字颜色
-        if (mTextColor != null) {
-            bundle.putParcelable(KEY_TEXT_COLOR_STATE, mTextColor);
-        }
-        //保存标签文字大小
-        bundle.putFloat(KEY_TEXT_SIZE_STATE, mTextSize);
-        //保存标签背景
-        bundle.putInt(KEY_BG_RES_ID_STATE, mLabelBgResId);
-        //保存标签内边距
-        bundle.putIntArray(KEY_PADDING_STATE, new int[]{mTextPaddingLeft, mTextPaddingTop,
-                mTextPaddingRight, mTextPaddingBottom});
-        //保存标签间隔
-        bundle.putInt(KEY_WORD_MARGIN_STATE, mWordMargin);
-        //保存行间隔
-        bundle.putInt(KEY_LINE_MARGIN_STATE, mLineMargin);
-        //保存标签列表
-        if (!mLabels.isEmpty()) {
-            bundle.putStringArrayList(KEY_LABELS_STATE, mLabels);
-        }
-
-        return bundle;
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Parcelable state) {
-        if (state instanceof Bundle) {
-            Bundle bundle = (Bundle) state;
-            //恢复父类信息
-            super.onRestoreInstanceState(bundle.getParcelable(KEY_SUPER_STATE));
-
-            //恢复标签文字颜色
-            ColorStateList color = bundle.getParcelable(KEY_TEXT_COLOR_STATE);
-            if (color != null) {
-                setLabelTextColor(color);
-            }
-            //恢复标签文字大小
-            setLabelTextSize(bundle.getFloat(KEY_TEXT_SIZE_STATE, mTextSize));
-            //恢复标签背景
-            int resId = bundle.getInt(KEY_BG_RES_ID_STATE, mLabelBgResId);
-            if (resId != 0) {
-                setLabelBackgroundResource(resId);
-            }
-            //恢复标签内边距
-            int[] padding = bundle.getIntArray(KEY_PADDING_STATE);
-            if (padding != null && padding.length == 4) {
-                setLabelTextPadding(padding[0], padding[1], padding[2], padding[3]);
-            }
-            //恢复标签间隔
-            setWordMargin(bundle.getInt(KEY_WORD_MARGIN_STATE, mWordMargin));
-            //恢复行间隔
-            setLineMargin(bundle.getInt(KEY_LINE_MARGIN_STATE, mLineMargin));
-            //恢复标签列表
-            ArrayList<String> labels = bundle.getStringArrayList(KEY_LABELS_STATE);
-            if (labels != null && !labels.isEmpty()) {
-                setLabels(labels);
-            }
-            return;
-        }
-        super.onRestoreInstanceState(state);
-    }
-
-    /**
-     * 设置标签列表
-     *
-     * @param labels
-     */
-    public void setLabels(ArrayList<String> labels) {
-        removeAllViews();
-        mLabels.clear();
-
-        if (labels != null) {
-            mLabels.addAll(labels);
-            int size = labels.size();
-            for (int i = 0; i < size; i++) {
-                addLabel(labels.get(i), i);
-            }
-        }
-    }
-
-    /**
-     * 获取标签列表
-     *
-     * @return
-     */
-    public ArrayList<String> getLabels() {
-        return mLabels;
-    }
 
     public void addLabel(String text, int position) {
-        final TextView label = new TextView(mContext);
-        label.setPadding(mTextPaddingLeft, mTextPaddingTop, mTextPaddingRight, mTextPaddingBottom);
-        label.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize);
-        label.setTextColor(mTextColor != null ? mTextColor : ColorStateList.valueOf(0xFF000000));
-        label.setText(text);
+        final TextView textView = new TextView(mContext);
+        textView.setPadding(mTextPaddingLeft, mTextPaddingTop, mTextPaddingRight, mTextPaddingBottom);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize);
+        textView.setTextColor(mTextColor != null ? mTextColor : ColorStateList.valueOf(0xFF000000));
+        textView.setText(text);
         if (mLabelBgResId != 0) {
-            label.setBackgroundResource(mLabelBgResId);
+            textView.setBackgroundResource(mLabelBgResId);
         }
         //label通过tag保存自己的位置(position)
-        label.setTag(position);
-        label.setOnClickListener(this);
-        addView(label);
-        mLabels.add(text);
+        textView.setTag(position);
+        textView.setOnClickListener(this);
+        addView(textView);
     }
 
     @Override

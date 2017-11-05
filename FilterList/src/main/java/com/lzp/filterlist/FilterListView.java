@@ -11,6 +11,7 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -138,24 +139,39 @@ public class FilterListView extends RelativeLayout{
             public void onRightMultiSelectCallbackLebel(List<String> updateTextList, boolean isAdd) {
                 if(isAdd){
                     //添加
-                    labelsView.addLabel(updateTextList.get(0), labelsView.getLabels().size());
+                    labelsView.addLabel(updateTextList.get(0), labelsView.getChildCount());
                 }else{
+                    List<View> deleteViews = new ArrayList<View>();
                     //删除
-                    if(labelsView.getLabels() != null && labelsView.getLabels().size() > 0){
-                        for(String label : labelsView.getLabels()){
+                    if(labelsView.getChildCount() > 0){
+                        for(int i = 0; i < labelsView.getChildCount(); i++){
+                            String label = ((TextView)labelsView.getChildAt(i)).getText().toString();
                             for(String updateText : updateTextList){
                                 if(TextUtils.equals(label,updateText)){
-                                    int i = labelsView.getLabels().indexOf(updateText);
-                                    labelsView.removeViewAt(i);
-                                    labelsView.getLabels().remove(i);
+                                    deleteViews.add(labelsView.getChildAt(i));
                                 }
                             }
                         }
+                    }
+                    for(int i = 0; i < deleteViews.size(); i++){
+                        labelsView.removeView(deleteViews.get(i));
                     }
 
                 }
             }
         });
     }
+
+//    public boolean getLabelHavaDirectFlight(){
+//        for(int i = 0; i < labelsView.getChildCount(); i++){
+//            String label = ((TextView)labelsView.getChildAt(i)).getText().toString();
+//            if(TextUtils.equals(label, "直飞")){
+//                return true;
+//            }else{
+//                return false;
+//            }
+//        }
+//        return false;
+//    }
 
 }

@@ -104,7 +104,15 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                             isSelectDirectFlight = position == 1 && TextUtils.equals(mIFlightFilterList.get(mLeftId).getRights().get(1), "直飞") ? true : false;
                             if(!holder.checkBox.isChecked()){
                                 updateTextList = new ArrayList<String>();
-                                isAdd = false; //标签删除列表
+                                if(isSelectDirectFlight){
+                                    isAdd = true;
+                                    updateTextList.add(mIFlightFilterList.get(mLeftId).getRights().get(position));
+                                    if(updateTextList.size() > 0){
+                                        onRightMultiSelectCallbackLebelLisentener.onRightMultiSelectCallbackLebel(updateTextList, isAdd);
+                                    }
+                                    updateTextList.clear();
+                                }
+                                isAdd = false;
                                 for(int i = 0; i < selectedRight.size(); i++){
                                     //选“不限”和“直飞”时，其他全部不选
                                     if(selectedRight.get(i)){
@@ -154,6 +162,18 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                             onRightMultiSelectCallbackLeftLisentener.onRightMultiSelectCallbackLeft(selectedAll);
                             notifyDataSetChanged();
                             //更新lebel数据
+                            if(TextUtils.equals(mIFlightFilterList.get(mLeftId).getRights().get(1), "直飞")){
+                                if(selectedRight.get(1)){
+//                                if(filterListView.getLabelHavaDirectFlight()){
+                                    isAdd = false;
+                                    updateTextList.add(mIFlightFilterList.get(mLeftId).getRights().get(position));
+                                    if(updateTextList.size() > 0){
+                                        onRightMultiSelectCallbackLebelLisentener.onRightMultiSelectCallbackLebel(updateTextList, isAdd);
+                                    }
+                                    updateTextList.clear();
+//                                }
+                                }
+                            }
                             isAdd = true;
                             updateTextList = new ArrayList<String>();
                             updateTextList.add(mIFlightFilterList.get(mLeftId).getRights().get(position));
