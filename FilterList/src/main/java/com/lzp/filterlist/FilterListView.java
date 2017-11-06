@@ -11,6 +11,7 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -152,6 +153,11 @@ public class FilterListView extends RelativeLayout{
                             labelsView.removeView(deleteViews.get(i));
                         }
                     }
+                }
+                if(labelsView.getChildCount() > 0){
+                    ((ScrollView)labelsView.getParent()).setVisibility(View.VISIBLE);
+                }else{
+                    ((ScrollView)labelsView.getParent()).setVisibility(View.GONE);
                 }
             }
         });

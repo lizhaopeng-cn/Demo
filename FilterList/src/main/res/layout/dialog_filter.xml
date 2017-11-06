@@ -20,6 +20,7 @@
     </LinearLayout>
 
     <ScrollView
+        android:visibility="gone"
         android:id="@+id/ll_iflight_filter_selected"
         android:layout_below="@+id/ll_iflight_filter_result"
         android:layout_width="match_parent"
