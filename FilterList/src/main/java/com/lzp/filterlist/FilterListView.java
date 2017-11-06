@@ -27,6 +27,8 @@ public class FilterListView extends RelativeLayout{
     private Context mContext;
     private Button btnClear;
     private Button btnConfirm;
+    private TextView tvResult;
+    private List<String> iFlightDatas;
 //    private List<String> mLefts;
 //    private SparseArray<List<String>> mRights;
 //    private List<String> rightsValue;
@@ -81,9 +83,10 @@ public class FilterListView extends RelativeLayout{
     }
 
     private void initView() {
+        tvResult = findViewById(R.id.tv_result);
+        labelsView = findViewById(R.id.labels);
         btnClear = findViewById(R.id.btn_clear);
         btnConfirm = findViewById(R.id.btn_confirm);
-        labelsView = findViewById(R.id.labels);
     }
 
     private void initLeftView() {
@@ -111,6 +114,7 @@ public class FilterListView extends RelativeLayout{
 
             }
         });
+
         //确认
         btnConfirm.setOnClickListener(new OnClickListener() {
             @Override
@@ -118,6 +122,8 @@ public class FilterListView extends RelativeLayout{
                 ((MainActivity)mContext).closePopupWindow();
             }
         });
+
+        //左侧列表点击的回调
         mIFlightFilterLeftAdapter.setOnLeftSelectListener(new IFlightFilterLeftAdapter.OnLeftSelectListener() {
             @Override
             public void onLeftSelect(int position) {
@@ -129,6 +135,7 @@ public class FilterListView extends RelativeLayout{
             }
         });
 
+        //右侧列表点击的回调
         mIFlightFilterRightAdapter.setOnRightMultiSelectCallbackLeftLisentener(new IFlightFilterRightAdapter.OnRightMultiSelectCallbackLeftLisentener() {
             @Override
             public void onRightMultiSelectCallbackLeft(SparseArray<SparseBooleanArray> selectedAll) {
@@ -136,7 +143,7 @@ public class FilterListView extends RelativeLayout{
             }
         });
 
-        //标签的点击监听
+        //标签的点击删除回调
         labelsView.setOnLabelClickListener(new LabelsView.OnLabelClickListener() {
             @Override
             public void onLabelClick(View label, String labelText, int position) {
@@ -147,38 +154,65 @@ public class FilterListView extends RelativeLayout{
                     }
                 }
                 mIFlightFilterRightAdapter.labelUpdateRight(labelText);
+                showOrCloseLabelsView();
+                showResult();
             }
         });
 
+        //点击右侧筛选标签列表的回调
         mIFlightFilterRightAdapter.setOnRightMultiSelectCallbackLebelLisentener(new IFlightFilterRightAdapter.OnRightMultiSelectCallbackLebelLisentener() {
             @Override
             public void onRightMultiSelectCallbackLebel(List<String> updateTextList, boolean isAdd) {
                 if(isAdd){
                     //添加
-                    labelsView.addLabel(updateTextList.get(0), labelsView.getChildCount());
+                    labelsView.addLabel(updateTextList.get(0), labelsView.getLabels().size());
                 }else{
-                    List<View> deleteViews = new ArrayList<View>();
                     //删除
-                    if(labelsView.getChildCount() > 0){
-                        for(int i = 0; i < labelsView.getChildCount(); i++){
-                            String label = ((TextView)labelsView.getChildAt(i)).getText().toString();
-                            for(String updateText : updateTextList){
-                                if(TextUtils.equals(label,updateText)){
-                                    deleteViews.add(labelsView.getChildAt(i));
-                                }
-                            }
-                        }
-                        for(int i = 0; i < deleteViews.size(); i++){
-                            labelsView.removeView(deleteViews.get(i));
-                        }
-                    }
+                    labelsView.removeLabels(updateTextList);
                 }
-                if(labelsView.getChildCount() > 0){
-                    ((ScrollView)labelsView.getParent()).setVisibility(View.VISIBLE);
-                }else{
-                    ((ScrollView)labelsView.getParent()).setVisibility(View.GONE);
-                }
+                showOrCloseLabelsView();
+                showResult();
             }
         });
     }
+
+    /**
+     * 标签列表的显示或隐藏
+     */
+    public void showOrCloseLabelsView(){
+        if(labelsView.getChildCount() > 0){
+            ((ScrollView)labelsView.getParent()).setVisibility(View.VISIBLE);
+        }else{
+            ((ScrollView)labelsView.getParent()).setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 展示顶部结果
+     */
+    public void showResult(){
+        int count = 0;
+        List<String> labels = labelsView.getLabels();
+        for(String iFlightData : iFlightDatas){
+            for(String lebal : labels){
+                if(TextUtils.equals(iFlightData, lebal)){
+                    count++;
+                }
+            }
+        }
+        if(count > 0){
+            tvResult.setText("共"+count+"个结果");
+        }else{
+            tvResult.setText("筛选无结果啦"+"删掉一些条件试试");
+        }
+    }
+
+    public void setIFlightDatas(List<String> iFlightDatas){
+        this.iFlightDatas = iFlightDatas;
+    }
+
+    public List<String> getFilterLables(){
+        return labelsView.getLabels();
+    }
+
 }

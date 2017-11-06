@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -268,6 +269,50 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
 //            }
 //        }
 //    }
+
+    /**
+     * 获取所有的标签数据
+     * @return
+     */
+    public List<String> getLabels(){
+        List<String> labels = new ArrayList<>();
+        for(int i = 0; i < getChildCount(); i++){
+            String label = ((TextView)getChildAt(i)).getText().toString();
+            if(!TextUtils.isEmpty(label)){
+                labels.add(label);
+            }
+        }
+        return labels;
+    }
+
+    /**
+     * 删除指定标签列表
+     * @param updateTextList
+     */
+    public void removeLabels(List<String> updateTextList){
+        List<View> deleteViews = new ArrayList<View>();
+        if(getChildCount() > 0){
+            for(int i = 0; i < getChildCount(); i++){
+                String label = ((TextView)getChildAt(i)).getText().toString();
+                for(String updateText : updateTextList){
+                    if(TextUtils.equals(label,updateText)){
+                        deleteViews.add(getChildAt(i));
+                    }
+                }
+            }
+            for(int i = 0; i < deleteViews.size(); i++){
+                removeLabel(deleteViews.get(i));
+            }
+        }
+    }
+
+    /**
+     * 删除指定标签
+     * @param view
+     */
+    public void removeLabel(View view){
+        removeView(view);
+    }
 
 
     public void addLabel(String text, int position) {
