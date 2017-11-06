@@ -100,7 +100,8 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                     if(TextUtils.equals(type, IFlightFilter.MULTI_SELECT)){
                         if(position == 0 && TextUtils.equals(mIFlightFilterList.get(mLeftId).getRights().get(0), "不限")
                                 || position == 1 && TextUtils.equals(mIFlightFilterList.get(mLeftId).getRights().get(1), "直飞")){
-                            isSelectUnlimited = position == 0 && TextUtils.equals(mIFlightFilterList.get(mLeftId).getRights().get(0), "不限") ? true : false;
+                            if(position == 0)
+                            isSelectUnlimited = TextUtils.equals(mIFlightFilterList.get(mLeftId).getRights().get(0), "不限") ? true : false;
                             isSelectDirectFlight = position == 1 && TextUtils.equals(mIFlightFilterList.get(mLeftId).getRights().get(1), "直飞") ? true : false;
                             if(!holder.checkBox.isChecked()){
                                 updateTextList = new ArrayList<String>();
