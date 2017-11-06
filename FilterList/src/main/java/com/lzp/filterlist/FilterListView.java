@@ -121,7 +121,12 @@ public class FilterListView extends RelativeLayout{
             @Override
             public void onLabelClick(View label, String labelText, int position) {
                 //label是被点击的标签，labelText是标签的文字，position是标签的位置。
-                labelsView.removeViewAt(position);
+                for(int i = 0; i < labelsView.getChildCount(); i ++){
+                    if(position == (int)labelsView.getChildAt(i).getTag()){
+                        labelsView.removeView(labelsView.getChildAt(i));
+                    }
+                }
+                mIFlightFilterRightAdapter.labelUpdateRight(labelText);
             }
         });
 

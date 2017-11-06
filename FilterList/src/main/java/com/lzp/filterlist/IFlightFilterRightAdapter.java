@@ -117,7 +117,6 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                                     //选“不限”和“直飞”时，其他全部不选
                                     if(selectedRight.get(i)){
                                         selectedRight.put(i, false);
-                                        //“直飞”反向选“不限”时，“不限”不添加到lebal列表
                                         if(!TextUtils.equals("不限", mIFlightFilterList.get(mLeftId).getRights().get(i))){
                                             updateTextList.add(mIFlightFilterList.get(mLeftId).getRights().get(i));
                                         }
@@ -227,6 +226,61 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
             rlRight = itemView.findViewById(R.id.rl_right);
             tvRightName = itemView.findViewById(R.id.tv_right_name);
             checkBox = itemView.findViewById(R.id.checkbox);
+        }
+    }
+
+    /**
+     * 点击删除标签列表更新右边筛选的选中状态
+     * @param deleteLabel
+     */
+    public void labelUpdateRight(String deleteLabel){
+
+        if(selectedAll != null && selectedAll.size() > 0
+                && mIFlightFilterList != null && mIFlightFilterList.size() > 0){
+            boolean isNotify = false;//是否更新
+            boolean isHasTrue = false; //是否全部为false
+            int a = 0;//左侧筛选列表所在的位置
+            for(int i = 0; i < selectedAll.size(); i++){
+                for(int j = 0; j < selectedAll.get(i).size(); j++){
+                    String right = mIFlightFilterList.get(i).getRights().get(j);
+                    if(TextUtils.equals(deleteLabel, right)){
+                        if(selectedAll.get(i).get(j)){
+                            SparseBooleanArray b = selectedAll.get(i);
+                            b.put(j, false);
+                            selectedAll.put(i, b);
+                            isNotify = true;
+                        }
+                    }
+                    if(isNotify){
+                        for(int k = 0; k < selectedAll.get(i).size(); k++){
+                            if(selectedAll.get(i).get(k)){
+                                isHasTrue = true;
+                                break;
+                            }
+                        }
+                        //如果点击标签所在列表全为false，赋值左侧筛选列表的值
+                        if(!isHasTrue){
+                            a = i;
+                        }
+                    }
+                    if(isHasTrue || isNotify){
+                        break;
+                    }
+                }
+                if(isHasTrue || isNotify){
+                    break;
+                }
+            }
+            if(!isHasTrue){
+                SparseBooleanArray b = selectedAll.get(a);
+                b.put(0, true);
+                isSelectUnlimited = true;
+                selectedAll.put(a, b);
+            }
+            if (isNotify){
+                notifyDataSetChanged();
+                onRightMultiSelectCallbackLeftLisentener.onRightMultiSelectCallbackLeft(selectedAll);
+            }
         }
     }
 
