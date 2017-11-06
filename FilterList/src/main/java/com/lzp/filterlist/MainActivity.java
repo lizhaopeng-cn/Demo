@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -166,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
     private void initIFlightDate() {
         iFlightDatas = new ArrayList<>();
         String text = null;
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 10; i++){
             text = rights1.get((int) (Math.random() * rights1.size()));
             iFlightDatas.add(text);
             text = rights2.get((int) (Math.random() * rights2.size()));
@@ -178,7 +181,19 @@ public class MainActivity extends AppCompatActivity {
             text = rights5.get((int) (Math.random() * rights5.size()));
             iFlightDatas.add(text);
         }
+
+        Set<String> set = new HashSet<>();
+        set.addAll(iFlightDatas);
+        iFlightDatas.clear();
+        iFlightDatas.addAll(set);
+        set.clear();
+
+        int i = iFlightDatas.indexOf("不限");
+        iFlightDatas.remove(i);
+
         filterView.setIFlightDatas(iFlightDatas);
+
+        filterView.showResult();
     }
 
     class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>

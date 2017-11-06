@@ -66,6 +66,10 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
         mRights = mIFlightFilterList.get(mLeftId).getRights();
     }
 
+    public SparseArray<SparseBooleanArray> getSelectedAll(){
+        return selectedAll;
+    }
+
     public List<String> getRightsValue(){
         return mRights = mIFlightFilterList.get(mLeftId).getRights();
     }

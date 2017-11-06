@@ -41,6 +41,8 @@ public class FilterListView extends RelativeLayout{
 
     private LabelsView labelsView; //自定义头部标签筛选控件
 
+    private SparseArray<SparseBooleanArray> selectedAll; //记录全部的选中状态
+
     public FilterListView(Context context, List<IFlightFilter> iFlightFilterList) {
         super(context);
         this.mContext = context;
@@ -187,15 +189,63 @@ public class FilterListView extends RelativeLayout{
         }
     }
 
+    public void setIFlightDatas(List<String> iFlightDatas){
+        this.iFlightDatas = iFlightDatas;
+    }
+
+    public List<String> getFilterLables(){
+        return labelsView.getLabels();
+    }
+
     /**
      * 展示顶部结果
      */
     public void showResult(){
         int count = 0;
-        List<String> labels = labelsView.getLabels();
+        List<String> filters = new ArrayList<>();
+        selectedAll = mIFlightFilterRightAdapter.getSelectedAll();
+        for(int i = 0; i < selectedAll.size(); i++){
+            SparseBooleanArray selectRight = selectedAll.get(i);
+            for(int j = 0; j < selectRight.size(); j++){
+                boolean isSelect = selectRight.get(j);
+                if(i == 1){
+                    if(isSelect){
+                        filters.add(iFlightFilterList.get(i).getRights().get(j));
+                    }
+                }else{
+                    if(selectRight.get(0)){
+                        if(!TextUtils.equals(iFlightFilterList.get(i).getRights().get(j),"直飞")){
+                            filters.add(iFlightFilterList.get(i).getRights().get(j));
+                        }
+                    }else{
+                        if(selectRight.get(j)){
+                            filters.add(iFlightFilterList.get(i).getRights().get(j));
+                        }
+                    }
+//                    if(j == 0){
+//                        if(isSelect){
+//                            if(!selectRight.get(j)){
+//                                if(!TextUtils.equals(iFlightFilterList.get(i).getRights().get(j),"直飞")){
+//                                    filters.add(iFlightFilterList.get(i).getRights().get(j));
+//                                }
+//                            }
+//                        }else{
+//                            if(selectRight.get(j)){
+//                                filters.add(iFlightFilterList.get(i).getRights().get(j));
+//                            }
+//                        }
+//                    }else{
+//                        if(selectRight.get(j)){
+//                            filters.add(iFlightFilterList.get(i).getRights().get(j));
+//                        }
+//                    }
+                }
+            }
+        }
+
         for(String iFlightData : iFlightDatas){
-            for(String lebal : labels){
-                if(TextUtils.equals(iFlightData, lebal)){
+            for(String filter : filters){
+                if(TextUtils.equals(iFlightData, filter)){
                     count++;
                 }
             }
@@ -205,14 +255,6 @@ public class FilterListView extends RelativeLayout{
         }else{
             tvResult.setText("筛选无结果啦"+"删掉一些条件试试");
         }
-    }
-
-    public void setIFlightDatas(List<String> iFlightDatas){
-        this.iFlightDatas = iFlightDatas;
-    }
-
-    public List<String> getFilterLables(){
-        return labelsView.getLabels();
     }
 
 }
