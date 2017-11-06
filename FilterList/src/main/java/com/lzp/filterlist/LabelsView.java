@@ -3,8 +3,7 @@ package com.lzp.filterlist;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.os.Bundle;
-import android.os.Parcelable;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -32,7 +31,6 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
     private float mTextSize;
     private int mLabelBgResId;
 
-//    private ArrayList<String> mLabels = new ArrayList<>();
     private List<View> labelViews = new ArrayList<>();
 
     private OnLabelClickListener mLabelClickListener;
@@ -278,6 +276,9 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize);
         textView.setTextColor(mTextColor != null ? mTextColor : ColorStateList.valueOf(0xFF000000));
         textView.setText(text);
+        Drawable rightDrawable = getResources().getDrawable(R.drawable.ic_clear_black_18dp);
+        rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());
+        textView.setCompoundDrawables(null, null, rightDrawable, null);
         if (mLabelBgResId != 0) {
             textView.setBackgroundResource(mLabelBgResId);
         }

@@ -10,6 +10,7 @@ import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -24,6 +25,8 @@ import java.util.List;
 public class FilterListView extends RelativeLayout{
 
     private Context mContext;
+    private Button btnClear;
+    private Button btnConfirm;
 //    private List<String> mLefts;
 //    private SparseArray<List<String>> mRights;
 //    private List<String> rightsValue;
@@ -58,7 +61,7 @@ public class FilterListView extends RelativeLayout{
 
         initData();
 
-        initLabelView();
+        initView();
 
         initLeftView();
 
@@ -77,7 +80,9 @@ public class FilterListView extends RelativeLayout{
 //        }
     }
 
-    private void initLabelView() {
+    private void initView() {
+        btnClear = findViewById(R.id.btn_clear);
+        btnConfirm = findViewById(R.id.btn_confirm);
         labelsView = findViewById(R.id.labels);
     }
 
@@ -99,6 +104,20 @@ public class FilterListView extends RelativeLayout{
     }
 
     private void setClick() {
+        //清空
+        btnClear.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        //确认
+        btnConfirm.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)mContext).closePopupWindow();
+            }
+        });
         mIFlightFilterLeftAdapter.setOnLeftSelectListener(new IFlightFilterLeftAdapter.OnLeftSelectListener() {
             @Override
             public void onLeftSelect(int position) {

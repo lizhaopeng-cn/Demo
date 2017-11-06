@@ -130,6 +130,11 @@ public class MainActivity extends AppCompatActivity {
         popupWindowFilter.setContentView(filterView);
         popupWindowFilter.setOutsideTouchable(true);
     }
+
+    public void closePopupWindow(){
+        popupWindowFilter.dismiss();
+    }
+
     private void setClick() {
         btnFilter.setOnClickListener(new View.OnClickListener() {
             @Override
