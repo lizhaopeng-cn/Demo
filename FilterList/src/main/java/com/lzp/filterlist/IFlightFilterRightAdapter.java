@@ -33,6 +33,7 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
 
     private OnRightMultiSelectCallbackLeftLisentener onRightMultiSelectCallbackLeftLisentener;
     private OnRightMultiSelectCallbackLebelLisentener onRightMultiSelectCallbackLebelLisentener;
+    private OnRightSingleSelectCallbackResultLisentener onRightSingleSelectCallbackResultLisentener;
 
     List<String> updateTextList;//更新标签列表的数据
     boolean isAdd;// true:添加 false:删除
@@ -41,29 +42,16 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
         this.mContext = context;
         this.mIFlightFilterList = iFlightFilterList;
 
-        initData();
-    }
-
-    private void initData() {
         mRights = mIFlightFilterList.get(mLeftId).getRights();
-
-        selectedAll = new SparseArray<>();
-        for(int i = 0; i < mIFlightFilterList.size(); i++){
-            SparseBooleanArray selectedRight = new SparseBooleanArray();
-            for(int j = 0; j < mIFlightFilterList.get(i).getRights().size(); j++){
-                if(j == 0){
-                    selectedRight.put(j, true);
-                }else{
-                    selectedRight.put(j, false);
-                    selectedAll.put(i, selectedRight);
-                }
-            }
-        }
     }
 
     public void setLeftId(int leftId){
         mLeftId = leftId;
         mRights = mIFlightFilterList.get(mLeftId).getRights();
+    }
+
+    public void setSelectedAll(SparseArray<SparseBooleanArray> selectedAll){
+        this.selectedAll = selectedAll;
     }
 
     public SparseArray<SparseBooleanArray> getSelectedAll(){
@@ -85,15 +73,15 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.tvRightName.setText(mRights.get(position));
         final SparseBooleanArray selectedRight = selectedAll.get(mLeftId);
-//        for(int i = 0; i < selectedRight.size(); i++){
-            if(selectedRight.get(position)){
-                holder.checkBox.setChecked(true);
-                holder.tvRightName.setTextColor(Color.parseColor("#23beae"));
-            }else{
-                holder.checkBox.setChecked(false);
-                holder.tvRightName.setTextColor(Color.parseColor("#666666"));
-            }
-//        }
+        if(selectedRight.get(position)){
+            holder.checkBox.setChecked(true);
+            holder.tvRightName.setTextColor(Color.parseColor("#23beae"));
+        }else{
+            holder.checkBox.setChecked(false);
+            holder.tvRightName.setTextColor(Color.parseColor("#666666"));
+        }
+        onRightMultiSelectCallbackLeftLisentener.onRightMultiSelectCallbackLeft(selectedAll);
+//        onRightMultiSelectCallbackLebelLisentener.onRightMultiSelectCallbackLebel(updateTextList, isAdd);
         holder.rlRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -208,6 +196,7 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                             selectedRight.put(position, true);
                             selectedAll.put(mLeftId, selectedRight);
                             notifyDataSetChanged();
+                            onRightSingleSelectCallbackResultLisentener.onRightSingleSelectCallbackResult();
                         }
                     }
                 }
@@ -287,6 +276,17 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                 onRightMultiSelectCallbackLeftLisentener.onRightMultiSelectCallbackLeft(selectedAll);
             }
         }
+    }
+
+    /**
+     * 单选结果回调接口
+     */
+    public interface OnRightSingleSelectCallbackResultLisentener{
+        void onRightSingleSelectCallbackResult();
+    }
+
+    public void setOnRightSingleSelectCallbackResultLisentener(OnRightSingleSelectCallbackResultLisentener onRightSingleSelectCallbackResultLisentener){
+        this.onRightSingleSelectCallbackResultLisentener = onRightSingleSelectCallbackResultLisentener;
     }
 
     /**

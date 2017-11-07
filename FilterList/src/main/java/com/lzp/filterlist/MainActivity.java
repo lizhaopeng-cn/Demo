@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -67,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
         popupWindowFilter.setOutsideTouchable(true);
     }
 
+    public void closePopupWindowConfirm(List<String> iFlightFilterDatas){
+        popupWindowFilter.dismiss();
+        iFlightDatas = iFlightFilterDatas;
+        homeAdapter.notifyDataSetChanged();
+    }
+
     public void closePopupWindow(){
         popupWindowFilter.dismiss();
     }
@@ -78,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
                 popupWindowFilter.showAtLocation(btnFilter, Gravity.BOTTOM , 0,0);
             }
         });
-
     }
 
     private void initFilterData() {
@@ -182,14 +188,20 @@ public class MainActivity extends AppCompatActivity {
             iFlightDatas.add(text);
         }
 
-        Set<String> set = new HashSet<>();
-        set.addAll(iFlightDatas);
-        iFlightDatas.clear();
-        iFlightDatas.addAll(set);
-        set.clear();
+//        Set<String> set = new TreeSet<>();
+//        set.addAll(iFlightDatas);
+//        iFlightDatas.clear();
+//        iFlightDatas.addAll(set);
+//        set.clear();
 
-        int i = iFlightDatas.indexOf("不限");
-        iFlightDatas.remove(i);
+        for(int i = 0; i < iFlightDatas.size(); i++){
+            if(TextUtils.equals(iFlightDatas.get(i),"不限")){
+                iFlightDatas.remove(i);
+                if(i != iFlightDatas.size()){
+                    i--;
+                }
+            }
+        }
 
         filterView.setIFlightDatas(iFlightDatas);
 
