@@ -28,8 +28,6 @@ public class IFlightFilterLeftAdapter extends RecyclerView.Adapter<IFlightFilter
 
     private SparseArray<SparseBooleanArray> selectedAll;
 
-    private LabelsView labelsView; //自定义头部标签筛选控件
-
     public IFlightFilterLeftAdapter(Context context, List<IFlightFilter> iFlightFilterList){
         this.mContext = context;
         this.mIFlightFilterList = iFlightFilterList;
@@ -38,12 +36,11 @@ public class IFlightFilterLeftAdapter extends RecyclerView.Adapter<IFlightFilter
             IFlightFilter iFlightFilter = iFlightFilterList.get(i);
             mLefts.add(iFlightFilter.getLeftName());
         }
-
-        selectedAll = new SparseArray<>();
     }
 
-    public void setLebelsView(LabelsView labelsView){
-        this.labelsView = labelsView;
+    public void setSelectedAll(SparseArray<SparseBooleanArray> selectedAll){
+        this.selectedAll = selectedAll;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -120,10 +117,5 @@ public class IFlightFilterLeftAdapter extends RecyclerView.Adapter<IFlightFilter
 
     public void setOnLeftSelectListener(OnLeftSelectListener onLeftSelectListener){
         this.mOnLeftSelectListener = onLeftSelectListener;
-    }
-
-    public void setSelectedAll(SparseArray<SparseBooleanArray> selectedAll){
-        this.selectedAll = selectedAll;
-        notifyDataSetChanged();
     }
 }

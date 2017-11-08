@@ -252,23 +252,22 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
 //        super.onRestoreInstanceState(state);
 //    }
 //
-//    /**
-//     * 设置标签列表
-//     *
-//     * @param labels
-//     */
-//    public void setLabels(ArrayList<String> labels) {
-//        removeAllViews();
+    /**
+     * 设置标签列表
+     *
+     * @param labels
+     */
+    public void setLabels(List<String> labels) {
+        removeAllViews();
 //        mLabels.clear();
-//
-//        if (labels != null) {
+
+        if (labels != null) {
 //            mLabels.addAll(labels);
-//            int size = labels.size();
-//            for (int i = 0; i < size; i++) {
-//                addLabel(labels.get(i), i);
-//            }
-//        }
-//    }
+            for (int i = 0; i < labels.size(); i++) {
+                addLabel(labels.get(i), i);
+            }
+        }
+    }
 
     /**
      * 获取所有的标签数据

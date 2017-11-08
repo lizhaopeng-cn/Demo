@@ -31,9 +31,6 @@ public class FilterListView extends RelativeLayout{
     private TextView tvResult;
     private List<String> iFlightDatas;
     private List<String> iFlightFilterDatas;
-//    private List<String> mLefts;
-//    private SparseArray<List<String>> mRights;
-//    private List<String> rightsValue;
     private List<IFlightFilter> iFlightFilterList;
     private RecyclerView rvLeft;
     private RecyclerView rvRight;
@@ -42,8 +39,10 @@ public class FilterListView extends RelativeLayout{
     private RelativeLayout dlgFilter;
 
     private LabelsView labelsView; //自定义头部标签筛选控件
+    private List<String> oldLabels;
 
     private SparseArray<SparseBooleanArray> selectedAll; //记录全部的选中状态
+    private SparseArray<SparseBooleanArray> oldSelectedAll; //记录上一次全部的选中状态
 
     public FilterListView(Context context, List<IFlightFilter> iFlightFilterList) {
         super(context);
@@ -65,7 +64,7 @@ public class FilterListView extends RelativeLayout{
     private void init() {
         dlgFilter = (RelativeLayout) LayoutInflater.from(mContext).inflate(R.layout.dialog_filter, this);
 
-        initData();
+        initSelectedAll();
 
         initView();
 
@@ -74,16 +73,6 @@ public class FilterListView extends RelativeLayout{
         initRightView();
 
         setClick();
-    }
-
-    private void initData() {
-//        mLefts = new ArrayList<>();
-//        mRights = new SparseArray<>();
-//        for(int i = 0; i < iFlightFilterList.size(); i++){
-//            IFlightFilter iFlightFilter = iFlightFilterList.get(i);
-//            mLefts.add(iFlightFilter.getLeftName());
-//            mRights.put(i, iFlightFilter.getRights());
-//        }
     }
 
     private void initView() {
@@ -114,6 +103,7 @@ public class FilterListView extends RelativeLayout{
         rvLeft.setLayoutManager(new LinearLayoutManager(mContext));
         rvLeft.addItemDecoration(new DividerItemDecoration(mContext,DividerItemDecoration.VERTICAL));
         mIFlightFilterLeftAdapter = new IFlightFilterLeftAdapter(mContext, iFlightFilterList);
+        mIFlightFilterLeftAdapter.setSelectedAll(selectedAll);
         rvLeft.setAdapter(mIFlightFilterLeftAdapter);
     }
 
@@ -122,19 +112,64 @@ public class FilterListView extends RelativeLayout{
         rvRight.setLayoutManager(new LinearLayoutManager(mContext));
         rvRight.addItemDecoration(new DividerItemDecoration(mContext,DividerItemDecoration.VERTICAL));
         mIFlightFilterRightAdapter = new IFlightFilterRightAdapter(mContext, iFlightFilterList);
-        initSelectedAll();
+        //如果上次有记录说明没点确定，则用上次的
         mIFlightFilterRightAdapter.setSelectedAll(selectedAll);
         rvRight.setAdapter(mIFlightFilterRightAdapter);
     }
 
+    public void setIFlightDatas(List<String> iFlightDatas){
+        this.iFlightDatas = iFlightDatas;
+    }
+
+    /**
+     * 加载上一次的数据
+     */
+    public void setOldSelect(){
+        if(oldSelectedAll != null){
+//            selectedAll = oldSelectedAll.clone();
+            for(int i = 0; i < oldSelectedAll.size(); i++){
+                SparseBooleanArray seleteRight = new SparseBooleanArray();
+                for(int j = 0; j < oldSelectedAll.get(i).size(); j ++){
+                    seleteRight.put(j,oldSelectedAll.get(i).get(j));
+                    selectedAll.put(i,seleteRight);
+                }
+            }
+            mIFlightFilterRightAdapter.setSelectedAll(selectedAll);
+            mIFlightFilterRightAdapter.notifyDataSetChanged();
+        }
+
+        labelsView.setLabels(oldLabels);
+        showOrCloseLabelsView();
+        showResult();
+    }
+
     private void setClick() {
-        //关闭筛选框
+        //占位控件关闭筛选框
         rlFillLabelWeight.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)mContext).closePopupWindow();
+                ((MainActivity)mContext).closePopupWindow(false);
             }
         });
+
+        //确认
+        btnConfirm.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                oldSelectedAll = selectedAll.clone();
+                oldSelectedAll = new SparseArray<SparseBooleanArray>();
+                for(int i = 0; i < selectedAll.size(); i++){
+                    SparseBooleanArray seleteRight = new SparseBooleanArray();
+                    for(int j = 0; j < selectedAll.get(i).size(); j ++){
+                        seleteRight.put(j,selectedAll.get(i).get(j));
+                        oldSelectedAll.put(i,seleteRight);
+                    }
+                }
+                oldLabels = labelsView.getLabels();
+                ((MainActivity)mContext).closePopupWindowConfirm(iFlightFilterDatas, true);
+            }
+        });
+
         //清空
         btnClear.setOnClickListener(new OnClickListener() {
             @Override
@@ -145,14 +180,6 @@ public class FilterListView extends RelativeLayout{
                 labelsView.removeAllViews();
                 showOrCloseLabelsView();
                 showResult();
-            }
-        });
-
-        //确认
-        btnConfirm.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity)mContext).closePopupWindowConfirm(iFlightFilterDatas);
             }
         });
 
@@ -196,12 +223,14 @@ public class FilterListView extends RelativeLayout{
         mIFlightFilterRightAdapter.setOnRightMultiSelectCallbackLebelLisentener(new IFlightFilterRightAdapter.OnRightMultiSelectCallbackLebelLisentener() {
             @Override
             public void onRightMultiSelectCallbackLebel(List<String> updateTextList, boolean isAdd) {
-                if(isAdd){
-                    //添加
-                    labelsView.addLabel(updateTextList.get(0), labelsView.getLabels().size());
-                }else{
-                    //删除
-                    labelsView.removeLabels(updateTextList);
+                if(updateTextList != null && updateTextList.size() > 0){
+                    if(isAdd){
+                        //添加
+                        labelsView.addLabel(updateTextList.get(0), labelsView.getLabels().size());
+                    }else{
+                        //删除
+                        labelsView.removeLabels(updateTextList);
+                    }
                 }
                 showOrCloseLabelsView();
                 showResult();
@@ -230,14 +259,6 @@ public class FilterListView extends RelativeLayout{
         }
     }
 
-    public void setIFlightDatas(List<String> iFlightDatas){
-        this.iFlightDatas = iFlightDatas;
-    }
-
-    public List<String> getFilterLables(){
-        return labelsView.getLabels();
-    }
-
     /**
      * 展示顶部结果
      */
@@ -255,9 +276,9 @@ public class FilterListView extends RelativeLayout{
                     }
                 }else{
                     if(selectRight.get(0)){
-                        if(!TextUtils.equals(iFlightFilterList.get(i).getRights().get(j),"直飞")){
+//                        if(!TextUtils.equals(iFlightFilterList.get(i).getRights().get(j),"直飞")){
                             filters.add(iFlightFilterList.get(i).getRights().get(j));
-                        }
+//                        }
                     }else{
                         if(selectRight.get(j)){
                             filters.add(iFlightFilterList.get(i).getRights().get(j));

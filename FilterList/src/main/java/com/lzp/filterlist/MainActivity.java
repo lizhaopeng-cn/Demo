@@ -6,6 +6,8 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
+import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private List<String> rights5;
     private List<String> iFlightDatas;
 
+    private boolean isConfirm;// 是否为确认而关闭弹框
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,25 @@ public class MainActivity extends AppCompatActivity {
         initIFlightDate();
         initRecyclerView();
         setClick();
+//        List<String> list1 = new ArrayList<>();
+//        list1.add(0,"A");
+//        list1.add(1,"B");
+//        List<String> list2 = new ArrayList<>();
+//        list2 = list1;
+//        list1.add(2,"C");
+//        for(int i = 0; i < list2.size(); i++){
+//            Log.i("SparseArray", list2.get(i));
+//        }
+
+        SparseArray<String> sparseArray1 = new SparseArray<>();
+        sparseArray1.put(0,"a");
+        sparseArray1.put(1,"b");
+        SparseArray<String> sparseArray2;
+        sparseArray2 = sparseArray1.clone();
+        sparseArray1.put(1,"c");
+        for(int i = 0; i < sparseArray2.size(); i++){
+            Log.i("SparseArray", sparseArray2.get(i));
+        }
     }
 
     private void initView() {
@@ -68,13 +91,15 @@ public class MainActivity extends AppCompatActivity {
         popupWindowFilter.setOutsideTouchable(true);
     }
 
-    public void closePopupWindowConfirm(List<String> iFlightFilterDatas){
+    public void closePopupWindowConfirm(List<String> iFlightFilterDatas, boolean isConfirm){
+        this.isConfirm = isConfirm;
         popupWindowFilter.dismiss();
         iFlightDatas = iFlightFilterDatas;
         homeAdapter.notifyDataSetChanged();
     }
 
-    public void closePopupWindow(){
+    public void closePopupWindow(boolean isConfirm){
+        this.isConfirm = isConfirm;
         popupWindowFilter.dismiss();
     }
 
@@ -83,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 popupWindowFilter.showAtLocation(btnFilter, Gravity.BOTTOM , 0,0);
+                if(!isConfirm){
+                    filterView.setOldSelect();
+                }
             }
         });
     }

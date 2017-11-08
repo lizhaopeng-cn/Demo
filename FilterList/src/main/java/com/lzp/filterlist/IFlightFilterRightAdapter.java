@@ -100,9 +100,7 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                                 if(isSelectDirectFlight){
                                     isAdd = true;
                                     updateTextList.add(mIFlightFilterList.get(mLeftId).getRights().get(position));
-                                    if(updateTextList.size() > 0){
-                                        onRightMultiSelectCallbackLebelLisentener.onRightMultiSelectCallbackLebel(updateTextList, isAdd);
-                                    }
+                                    onRightMultiSelectCallbackLebelLisentener.onRightMultiSelectCallbackLebel(updateTextList, isAdd);
                                     updateTextList.clear();
                                 }
                                 isAdd = false;
@@ -120,6 +118,7 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
                                 selectedRight.put(position, true);
                                 selectedAll.put(mLeftId, selectedRight);
                                 onRightMultiSelectCallbackLeftLisentener.onRightMultiSelectCallbackLeft(selectedAll);
+                                onRightMultiSelectCallbackLebelLisentener.onRightMultiSelectCallbackLebel(updateTextList, isAdd);
                                 notifyDataSetChanged();
                             }
                         }else if(holder.checkBox.isChecked()){
