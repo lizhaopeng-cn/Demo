@@ -64,10 +64,12 @@ public class MainActivity extends AppCompatActivity {
         sparseArray1.put(0,"a");
         sparseArray1.put(1,"b");
         SparseArray<String> sparseArray2;
-        sparseArray2 = sparseArray1.clone();
-        sparseArray1.put(1,"c");
+        sparseArray2 = sparseArray1;
+//        sparseArray2 = sparseArray1.clone();
+        sparseArray1.put(3,"c");
         for(int i = 0; i < sparseArray2.size(); i++){
-            Log.i("SparseArray", sparseArray2.get(i));
+            Log.i("SparseArray", "get-"+i+"-"+sparseArray2.get(i));
+            Log.i("SparseArray", "valueAt-"+i+"-"+sparseArray2.valueAt(i));
         }
     }
 
