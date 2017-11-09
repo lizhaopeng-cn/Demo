@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     private void configurePopupWindow() {
         filterView = new FilterListView(this, iFlightFilters);
         filterView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-        popupWindowFilter = new PopupWindow(filterView, ViewGroup.LayoutParams.MATCH_PARENT, filterView.getMeasuredHeight());
+        popupWindowFilter = new PopupWindow(filterView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         popupWindowFilter.setContentView(filterView);
         popupWindowFilter.setOutsideTouchable(true);
     }

@@ -252,10 +252,10 @@ public class FilterListView extends RelativeLayout{
     public void showOrCloseLabelsView(){
         if(labelsView.getChildCount() > 0){
             ((ScrollView)labelsView.getParent()).setVisibility(View.VISIBLE);
-            rlFillLabelWeight.setVisibility(View.GONE);
+//            rlFillLabelWeight.setVisibility(View.GONE);
         }else{
             ((ScrollView)labelsView.getParent()).setVisibility(View.GONE);
-            rlFillLabelWeight.setVisibility(View.VISIBLE);
+//            rlFillLabelWeight.setVisibility(View.VISIBLE);
         }
     }
 
