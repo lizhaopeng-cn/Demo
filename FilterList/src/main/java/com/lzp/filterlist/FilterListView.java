@@ -10,7 +10,9 @@ import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -29,6 +31,7 @@ public class FilterListView extends RelativeLayout{
     private Button btnClear;
     private Button btnConfirm;
     private TextView tvResult;
+    private ScrollView svIflightFilterSelected;
     private List<String> iFlightDatas;
     private List<String> iFlightFilterDatas;
     private List<IFlightFilter> iFlightFilterList;
@@ -68,6 +71,8 @@ public class FilterListView extends RelativeLayout{
 
         initView();
 
+        initData();
+
         initLeftView();
 
         initRightView();
@@ -78,9 +83,14 @@ public class FilterListView extends RelativeLayout{
     private void initView() {
         rlFillLabelWeight = findViewById(R.id.rl_fill_label_weight);
         tvResult = findViewById(R.id.tv_result);
+        svIflightFilterSelected = findViewById(R.id.sv_iflight_filter_selected);
         labelsView = findViewById(R.id.labels);
         btnClear = findViewById(R.id.btn_clear);
         btnConfirm = findViewById(R.id.btn_confirm);
+    }
+
+    private void initData() {
+        labelsView.setMaxLine(2);
     }
 
     private void initSelectedAll() {
@@ -251,11 +261,24 @@ public class FilterListView extends RelativeLayout{
      */
     public void showOrCloseLabelsView(){
         if(labelsView.getChildCount() > 0){
+            labelsView.setFilterListView(this);
             ((ScrollView)labelsView.getParent()).setVisibility(View.VISIBLE);
-//            rlFillLabelWeight.setVisibility(View.GONE);
+//          rlFillLabelWeight.setVisibility(View.GONE);
         }else{
             ((ScrollView)labelsView.getParent()).setVisibility(View.GONE);
 //            rlFillLabelWeight.setVisibility(View.VISIBLE);
+        }
+    }
+
+    /**
+     * 动态设置ScrollViewHeight高度
+     */
+    public void setScrollViewHeight() {
+        int labelHeight = labelsView.getLabelHeight();
+        if(labelHeight > 0){
+            RelativeLayout.LayoutParams params = (LayoutParams) svIflightFilterSelected.getLayoutParams();
+            params.height = labelHeight;
+            svIflightFilterSelected.setLayoutParams(params);
         }
     }
 

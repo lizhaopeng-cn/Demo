@@ -36,6 +36,11 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
 
     private OnLabelClickListener mLabelClickListener;
 
+    private int labelHeight; //标签列表的高度
+    private int thisLine; //标签列表的行数
+    private int maxLine; //标签列表的最大行数
+    private FilterListView filterListView;
+
     public LabelsView(Context context) {
         super(context);
         mContext = context;
@@ -75,6 +80,10 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
         }
     }
 
+    public void setFilterListView(FilterListView filterListView){
+        this.filterListView = filterListView;
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
@@ -98,6 +107,7 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
                 maxLineWidth = Math.max(maxLineWidth, lineWidth);
                 lineWidth = 0;
                 begin = true;
+                thisLine++;
             }
             maxItemHeight = Math.max(maxItemHeight, view.getMeasuredHeight());
             if (!begin) {
@@ -129,6 +139,7 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
             }
         }
         result = Math.max(result, getSuggestedMinimumWidth());
+        filterListView.setScrollViewHeight();
         return result;
     }
 
@@ -146,6 +157,10 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
             }
         }
         result = Math.max(result, getSuggestedMinimumHeight());
+        //赋值标签的最大高度
+        if(thisLine <= maxLine){
+            labelHeight = result;
+        }
         return result;
     }
 
@@ -175,83 +190,20 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
         }
     }
 
-    /*  用于保存View的信息的key  */
-//    private static final String KEY_SUPER_STATE = "key_super_state";
-//    private static final String KEY_TEXT_COLOR_STATE = "key_text_color_state";
-//    private static final String KEY_TEXT_SIZE_STATE = "key_text_size_state";
-//    private static final String KEY_BG_RES_ID_STATE = "key_bg_res_id_state";
-//    private static final String KEY_PADDING_STATE = "key_padding_state";
-//    private static final String KEY_WORD_MARGIN_STATE = "key_word_margin_state";
-//    private static final String KEY_LINE_MARGIN_STATE = "key_line_margin_state";
-//    private static final String KEY_LABELS_STATE = "key_labels_state";
-//
-//    @Override
-//    protected Parcelable onSaveInstanceState() {
-//
-//        Bundle bundle = new Bundle();
-//        //保存父类的信息
-//        bundle.putParcelable(KEY_SUPER_STATE, super.onSaveInstanceState());
-//        //保存标签文字颜色
-//        if (mTextColor != null) {
-//            bundle.putParcelable(KEY_TEXT_COLOR_STATE, mTextColor);
-//        }
-//        //保存标签文字大小
-//        bundle.putFloat(KEY_TEXT_SIZE_STATE, mTextSize);
-//        //保存标签背景
-//        bundle.putInt(KEY_BG_RES_ID_STATE, mLabelBgResId);
-//        //保存标签内边距
-//        bundle.putIntArray(KEY_PADDING_STATE, new int[]{mTextPaddingLeft, mTextPaddingTop,
-//                mTextPaddingRight, mTextPaddingBottom});
-//        //保存标签间隔
-//        bundle.putInt(KEY_WORD_MARGIN_STATE, mWordMargin);
-//        //保存行间隔
-//        bundle.putInt(KEY_LINE_MARGIN_STATE, mLineMargin);
-//        //保存标签列表
-//        if (labelViews.size() > 0) {
-//            bundle.putStringArrayList(KEY_LABELS_STATE, labelViews);
-//        }
-//
-//        return bundle;
-//    }
-//
-//    @Override
-//    protected void onRestoreInstanceState(Parcelable state) {
-//        if (state instanceof Bundle) {
-//            Bundle bundle = (Bundle) state;
-//            //恢复父类信息
-//            super.onRestoreInstanceState(bundle.getParcelable(KEY_SUPER_STATE));
-//
-//            //恢复标签文字颜色
-//            ColorStateList color = bundle.getParcelable(KEY_TEXT_COLOR_STATE);
-//            if (color != null) {
-//                setLabelTextColor(color);
-//            }
-//            //恢复标签文字大小
-//            setLabelTextSize(bundle.getFloat(KEY_TEXT_SIZE_STATE, mTextSize));
-//            //恢复标签背景
-//            int resId = bundle.getInt(KEY_BG_RES_ID_STATE, mLabelBgResId);
-//            if (resId != 0) {
-//                setLabelBackgroundResource(resId);
-//            }
-//            //恢复标签内边距
-//            int[] padding = bundle.getIntArray(KEY_PADDING_STATE);
-//            if (padding != null && padding.length == 4) {
-//                setLabelTextPadding(padding[0], padding[1], padding[2], padding[3]);
-//            }
-//            //恢复标签间隔
-//            setWordMargin(bundle.getInt(KEY_WORD_MARGIN_STATE, mWordMargin));
-//            //恢复行间隔
-//            setLineMargin(bundle.getInt(KEY_LINE_MARGIN_STATE, mLineMargin));
-//            //恢复标签列表
-//            ArrayList<String> labels = bundle.getStringArrayList(KEY_LABELS_STATE);
-//            if (labels != null && !labels.isEmpty()) {
-//                setLabels(labels);
-//            }
-//            return;
-//        }
-//        super.onRestoreInstanceState(state);
-//    }
-//
+    /**
+     * 设置标签列表的最大行数
+     */
+    public void setMaxLine(int maxLine){
+        this.maxLine = maxLine;
+    }
+
+    /**
+     * 获取标签列表高度
+     */
+    public int getLabelHeight(){
+        return labelHeight;
+    }
+
     /**
      * 设置标签列表
      *
