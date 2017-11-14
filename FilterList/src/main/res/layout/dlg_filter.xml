@@ -72,8 +72,8 @@
             app:labelTextPaddingLeft="10dp"
             app:labelTextPaddingRight="10dp"
             app:labelTextPaddingTop="5dp"
-            app:labelBackground="@drawable/label_bg"
-            app:labelTextColor="@drawable/label_text_color"
+            app:labelBackground="@drawable/iflight_filter_label"
+            app:labelTextColor="@drawable/iflight_filter_label_text_color"
             app:labelTextSize="14sp"
             app:lineMargin="10dp"
             app:wordMargin="10dp"/>

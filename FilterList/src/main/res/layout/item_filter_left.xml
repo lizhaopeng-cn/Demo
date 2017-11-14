@@ -38,7 +38,7 @@
             android:id="@+id/tv_circle_left_tag"
             android:layout_width="7dp"
             android:layout_height="7dp"
-            android:background="@drawable/bg_iflight_filter_circle_tag"
+            android:background="@drawable/iflight_filter_circle_tag"
             android:layout_gravity="center_vertical"
             android:visibility="invisible"/>
 

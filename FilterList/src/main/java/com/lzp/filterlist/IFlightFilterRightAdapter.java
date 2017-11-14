@@ -64,7 +64,7 @@ public class IFlightFilterRightAdapter extends RecyclerView.Adapter<IFlightFilte
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_right, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_filter_right, parent, false);
         IFlightFilterRightAdapter.MyViewHolder myViewHolder = new IFlightFilterRightAdapter.MyViewHolder(view);
         return myViewHolder;
     }

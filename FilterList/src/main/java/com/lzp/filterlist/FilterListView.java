@@ -10,9 +10,7 @@ import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -65,7 +63,7 @@ public class FilterListView extends RelativeLayout{
     }
 
     private void init() {
-        dlgFilter = (RelativeLayout) LayoutInflater.from(mContext).inflate(R.layout.dialog_filter, this);
+        dlgFilter = (RelativeLayout) LayoutInflater.from(mContext).inflate(R.layout.dlg_filter, this);
 
         initSelectedAll();
 
