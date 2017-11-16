@@ -234,8 +234,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         filterView.setIFlightDatas(iFlightDatas);
-
-        filterView.showResult();
     }
 
     class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder>

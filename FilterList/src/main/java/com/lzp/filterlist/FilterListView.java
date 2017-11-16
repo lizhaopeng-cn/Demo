@@ -145,6 +145,10 @@ public class FilterListView extends RelativeLayout{
             }
             mIFlightFilterRightAdapter.setSelectedAll(selectedAll);
             mIFlightFilterRightAdapter.notifyDataSetChanged();
+        }else{
+            initSelectedAll();
+            mIFlightFilterRightAdapter.setSelectedAll(selectedAll);
+            mIFlightFilterRightAdapter.notifyDataSetChanged();
         }
 
         labelsView.setLabels(oldLabels);
