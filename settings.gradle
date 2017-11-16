@@ -1,4 +1,4 @@
-include ':APP',
+include ':APP', ':Permission',
         ':GitDemo',
 //        ':CountDown',
 //        ':Timer',

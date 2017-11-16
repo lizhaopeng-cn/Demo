@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/FilterList/FilterList.iml" filepath="$PROJECT_DIR$/FilterList/FilterList.iml" />
       <module fileurl="file://$PROJECT_DIR$/GitDemo/GitDemo.iml" filepath="$PROJECT_DIR$/GitDemo/GitDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/Gradle/Gradle.iml" filepath="$PROJECT_DIR$/Gradle/Gradle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Permission/Permission.iml" filepath="$PROJECT_DIR$/Permission/Permission.iml" />
     </modules>
   </component>
 </project>
