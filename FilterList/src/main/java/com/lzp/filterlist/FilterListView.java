@@ -88,6 +88,7 @@ public class FilterListView extends RelativeLayout{
     }
 
     private void initData() {
+        labelsView.setFilterListView(this);
         labelsView.setMaxLine(2);
     }
 
@@ -259,7 +260,6 @@ public class FilterListView extends RelativeLayout{
      */
     public void showOrCloseLabelsView(){
         if(labelsView.getChildCount() > 0){
-            labelsView.setFilterListView(this);
             ((ScrollView)labelsView.getParent()).setVisibility(View.VISIBLE);
 //          rlFillLabelWeight.setVisibility(View.GONE);
         }else{
@@ -276,7 +276,8 @@ public class FilterListView extends RelativeLayout{
         if(labelHeight > 0){
             RelativeLayout.LayoutParams params = (LayoutParams) svIflightFilterSelected.getLayoutParams();
             params.height = labelHeight;
-            svIflightFilterSelected.setLayoutParams(params);
+//            svIflightFilterSelected.setLayoutParams(params);
+//            svIflightFilterSelected.invalidate();
         }
     }
 
