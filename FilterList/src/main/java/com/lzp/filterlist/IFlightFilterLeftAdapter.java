@@ -78,7 +78,7 @@ public class IFlightFilterLeftAdapter extends RecyclerView.Adapter<IFlightFilter
             holder.tvLeftName.setTextColor(Color.parseColor("#333333"));
         }else{
             holder.tvLineSelected.setVisibility(View.INVISIBLE);
-            holder.llLeft.setBackgroundColor(Color.parseColor("#dfdfdf"));
+            holder.llLeft.setBackgroundColor(Color.parseColor("#f6f6f6"));
             holder.tvLeftName.setTextColor(Color.parseColor("#666666"));
         }
         holder.llLeft.setOnClickListener(new View.OnClickListener() {
