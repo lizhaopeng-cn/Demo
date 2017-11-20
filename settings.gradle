@@ -1,5 +1,6 @@
-include ':APP',
-        ':GitDemo',
+include   ':AlarmNotification',
+//        ':Bugly',
+//        ':GitDemo',
 //        ':CountDown',
 //        ':Timer',
 //        ':choosepic',
@@ -26,4 +27,5 @@ include ':APP',
 //        ':CallBack',
 //        ':mywidget',
 //        ':Snackbar',
-        ':FilterList'
+//        ':FilterList'
+':APP'
