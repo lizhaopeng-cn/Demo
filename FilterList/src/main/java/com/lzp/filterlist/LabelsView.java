@@ -37,7 +37,6 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
     private OnLabelClickListener mLabelClickListener;
 
     private int labelHeight; //标签列表的高度
-    private int thisLine; //标签列表的行数
     private int maxLine; //标签列表的最大行数
     private FilterListView filterListView;
 
@@ -86,7 +85,7 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
+        int thisLine = 1; //标签列表的行数
         int count = getChildCount();
         int maxWidth = MeasureSpec.getSize(widthMeasureSpec) - getPaddingLeft() - getPaddingRight();
 
@@ -113,6 +112,7 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
             if (!begin) {
                 lineWidth += mWordMargin;
             } else {
+                lineWidth += mWordMargin;
                 begin = false;
             }
             lineWidth += view.getMeasuredWidth();
@@ -122,7 +122,7 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
         maxLineWidth = Math.max(maxLineWidth, lineWidth);
 
         setMeasuredDimension(measureWidth(widthMeasureSpec, maxLineWidth),
-                measureHeight(heightMeasureSpec, contentHeight));
+                measureHeight(heightMeasureSpec, contentHeight, thisLine));
     }
 
     private int measureWidth(int measureSpec, int contentWidth) {
@@ -139,11 +139,10 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
             }
         }
         result = Math.max(result, getSuggestedMinimumWidth());
-        filterListView.setScrollViewHeight();
         return result;
     }
 
-    private int measureHeight(int measureSpec, int contentHeight) {
+    private int measureHeight(int measureSpec, int contentHeight, int thisLine) {
         int result = 0;
         int specMode = MeasureSpec.getMode(measureSpec);
         int specSize = MeasureSpec.getSize(measureSpec);
@@ -161,6 +160,7 @@ public class LabelsView extends ViewGroup implements View.OnClickListener {
         if(thisLine <= maxLine){
             labelHeight = result;
         }
+        filterListView.setScrollViewHeight();
         return result;
     }
 

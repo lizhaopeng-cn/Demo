@@ -10,6 +10,9 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/APP" />
             <option value="$PROJECT_DIR$/AlarmNotification" />
+            <option value="$PROJECT_DIR$/FilterList" />
+            <option value="$PROJECT_DIR$/GitDemo" />
+            <option value="$PROJECT_DIR$/Permission" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

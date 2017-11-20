@@ -1,16 +1,21 @@
 package com.lzp.filterlist;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -29,6 +34,7 @@ public class FilterListView extends RelativeLayout{
     private Button btnClear;
     private Button btnConfirm;
     private TextView tvResult;
+    private ProgressBar progressBar;
     private ScrollView svIflightFilterSelected;
     private List<String> iFlightDatas;
     private List<String> iFlightFilterDatas;
@@ -81,6 +87,7 @@ public class FilterListView extends RelativeLayout{
     private void initView() {
         rlFillLabelWeight = findViewById(R.id.rl_fill_label_weight);
         tvResult = findViewById(R.id.tv_result);
+        progressBar = findViewById(R.id.progressBar);
         svIflightFilterSelected = findViewById(R.id.sv_iflight_filter_selected);
         labelsView = findViewById(R.id.labels);
         btnClear = findViewById(R.id.btn_clear);
@@ -88,6 +95,7 @@ public class FilterListView extends RelativeLayout{
     }
 
     private void initData() {
+        labelsView.setFilterListView(this);
         labelsView.setMaxLine(2);
     }
 
@@ -142,6 +150,10 @@ public class FilterListView extends RelativeLayout{
                     selectedAll.put(i,seleteRight);
                 }
             }
+            mIFlightFilterRightAdapter.setSelectedAll(selectedAll);
+            mIFlightFilterRightAdapter.notifyDataSetChanged();
+        }else{
+            initSelectedAll();
             mIFlightFilterRightAdapter.setSelectedAll(selectedAll);
             mIFlightFilterRightAdapter.notifyDataSetChanged();
         }
@@ -259,7 +271,6 @@ public class FilterListView extends RelativeLayout{
      */
     public void showOrCloseLabelsView(){
         if(labelsView.getChildCount() > 0){
-            labelsView.setFilterListView(this);
             ((ScrollView)labelsView.getParent()).setVisibility(View.VISIBLE);
 //          rlFillLabelWeight.setVisibility(View.GONE);
         }else{
@@ -276,7 +287,8 @@ public class FilterListView extends RelativeLayout{
         if(labelHeight > 0){
             RelativeLayout.LayoutParams params = (LayoutParams) svIflightFilterSelected.getLayoutParams();
             params.height = labelHeight;
-            svIflightFilterSelected.setLayoutParams(params);
+//            svIflightFilterSelected.setLayoutParams(params);
+//            svIflightFilterSelected.invalidate();
         }
     }
 
@@ -330,9 +342,21 @@ public class FilterListView extends RelativeLayout{
         }
         if(count > 0){
             tvResult.setText("共"+count+"个结果");
+            setForegroundColorSpan(1, String.valueOf(count).length() + 1, tvResult);
         }else{
-            tvResult.setText("筛选无结果啦"+"删掉一些条件试试");
+            tvResult.setText("筛选无结果啦"+" 删掉一些条件试试");
+            setForegroundColorSpan(0, 6, tvResult);
         }
+    }
+
+    /**
+     * TextView中部分文字着色
+     */
+    public void setForegroundColorSpan(int start, int end, TextView textView){
+        SpannableStringBuilder result = new SpannableStringBuilder(textView.getText().toString());
+        ForegroundColorSpan span = new ForegroundColorSpan(Color.parseColor("#ff6917"));
+        result.setSpan(span, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(result);
     }
 
 }
