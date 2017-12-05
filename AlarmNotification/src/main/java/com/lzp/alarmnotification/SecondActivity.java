@@ -6,6 +6,7 @@ import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -18,8 +19,8 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView tv = (TextView) findViewById(R.id.tv);
+        EditText et = (EditText) findViewById(R.id.et);
         long l = getIntent().getLongExtra("when", 0);
-        tv.setText(String.valueOf(l));
+        et.setText(String.valueOf(l));
     }
 }
