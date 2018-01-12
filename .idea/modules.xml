@@ -4,9 +4,11 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/APP/APP.iml" filepath="$PROJECT_DIR$/APP/APP.iml" />
       <module fileurl="file://$PROJECT_DIR$/AlarmNotification/AlarmNotification.iml" filepath="$PROJECT_DIR$/AlarmNotification/AlarmNotification.iml" />
-      <module fileurl="file://F:\Application\Demo\AlarmNotification\AlarmNotification.iml" filepath="F:\Application\Demo\AlarmNotification\AlarmNotification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CoordinatorLayout/CoordinatorLayout.iml" filepath="$PROJECT_DIR$/CoordinatorLayout/CoordinatorLayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/Demo.iml" filepath="$PROJECT_DIR$/Demo.iml" />
       <module fileurl="file://F:\Application\Demo\Gradle\Gradle.iml" filepath="F:\Application\Demo\Gradle\Gradle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Snackbar/Snackbar.iml" filepath="$PROJECT_DIR$/Snackbar/Snackbar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SuspensionBall/SuspensionBall.iml" filepath="$PROJECT_DIR$/SuspensionBall/SuspensionBall.iml" />
     </modules>
   </component>
 </project>
