@@ -18,9 +18,16 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    </FrameLayout>
+
+    <!--<include
         layout="@layout/content_main">
-    </include>
+    </include>-->
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/CoordinatorLayout" />
             <option value="$PROJECT_DIR$/Snackbar" />
             <option value="$PROJECT_DIR$/SuspensionBall" />
+            <option value="$PROJECT_DIR$/navigationview" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

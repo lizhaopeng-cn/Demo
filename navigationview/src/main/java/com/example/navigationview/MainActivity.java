@@ -1,5 +1,7 @@
 package com.example.navigationview;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private NavigationView navigationView;
     private FloatingActionButton fab;
+    private MainFragment mMainFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,16 @@ public class MainActivity extends AppCompatActivity {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.open,R.string.close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+        setDefaultFragment();
+    }
 
+    private void setDefaultFragment()
+    {
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        mMainFragment = new MainFragment();
+        transaction.replace(R.id.content, mMainFragment);
+        transaction.commit();
     }
 
     private void setOnClick() {
