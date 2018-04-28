@@ -10,10 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/APP" />
             <option value="$PROJECT_DIR$/AlarmNotification" />
-            <option value="$PROJECT_DIR$/CoordinatorLayout" />
-            <option value="$PROJECT_DIR$/Snackbar" />
-            <option value="$PROJECT_DIR$/SuspensionBall" />
-            <option value="$PROJECT_DIR$/navigationview" />
+            <option value="$PROJECT_DIR$/DataBinding" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
