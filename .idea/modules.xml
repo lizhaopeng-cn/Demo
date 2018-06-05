@@ -4,9 +4,11 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/APP/APP.iml" filepath="$PROJECT_DIR$/APP/APP.iml" />
       <module fileurl="file://$PROJECT_DIR$/AlarmNotification/AlarmNotification.iml" filepath="$PROJECT_DIR$/AlarmNotification/AlarmNotification.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DataBinding/DataBinding.iml" filepath="$PROJECT_DIR$/DataBinding/DataBinding.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CanvasClip/CanvasClip.iml" filepath="$PROJECT_DIR$/CanvasClip/CanvasClip.iml" />
       <module fileurl="file://$PROJECT_DIR$/Demo.iml" filepath="$PROJECT_DIR$/Demo.iml" />
       <module fileurl="file://F:\Application\Demo\Gradle\Gradle.iml" filepath="F:\Application\Demo\Gradle\Gradle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Reflection/Reflection.iml" filepath="$PROJECT_DIR$/Reflection/Reflection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RingView/RingView.iml" filepath="$PROJECT_DIR$/RingView/RingView.iml" />
     </modules>
   </component>
 </project>

@@ -40,5 +40,6 @@ public class MainActivity extends AppCompatActivity {
         textView.setText("哈哈");
 
         relativeLayout.addView(textView);
+        System.out.print("asdf");
     }
 }
