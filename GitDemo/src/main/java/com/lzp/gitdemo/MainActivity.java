@@ -18,5 +18,10 @@ public class MainActivity extends AppCompatActivity {
         //6
         //7
         //8
+        gitReset();
+    }
+
+    private gitReset(){
+        String reset = "1";
     }
 }
