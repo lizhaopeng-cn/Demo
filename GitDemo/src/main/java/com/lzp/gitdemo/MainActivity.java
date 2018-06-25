@@ -10,21 +10,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //ha
         setContentView(R.layout.activity_main);
-        //1
-        //2
-        //3
-        //4
-        //5
-        //6
-        //7
-        //8
-        gitReset();
-    }
-
-    private gitReset(){
-        String reset = "1";
-    }
-    public void hehe(){
-
+        String str = "dev";
     }
 }
