@@ -19,4 +19,7 @@ public class MainActivity extends AppCompatActivity {
         //7
         //8
     }
+    public void hehe(){
+
+    }
 }
