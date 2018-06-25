@@ -10,9 +10,9 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/APP" />
             <option value="$PROJECT_DIR$/AlarmNotification" />
-            <option value="$PROJECT_DIR$/CanvasClip" />
-            <option value="$PROJECT_DIR$/Reflection" />
-            <option value="$PROJECT_DIR$/RingView" />
+            <option value="$PROJECT_DIR$/ClipChildren" />
+            <option value="$PROJECT_DIR$/RxJava" />
+            <option value="$PROJECT_DIR$/RxJava2" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

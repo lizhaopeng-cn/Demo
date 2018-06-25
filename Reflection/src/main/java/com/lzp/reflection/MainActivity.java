@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
 //            Log.e("reflection", "Constructor----------------");
 
             Class clz = MyConstructor.class;
+            Object o = clz.newInstance();
             MyConstructor myConstructor = (MyConstructor) clz.newInstance();
             myConstructor.print();
             Constructor constructor = clz.getConstructor(String.class);

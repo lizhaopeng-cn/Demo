@@ -41,5 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
         relativeLayout.addView(textView);
         System.out.print("asdf");
+
+        BindView bindView = new BindView();
+        bindView.aTest.i = 5;
+        bindView.bTest.i = 10;
+        textView.setText("" + bindView.aTest.i + "-" + bindView.bTest.i);
     }
 }

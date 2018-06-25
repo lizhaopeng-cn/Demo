@@ -7,5 +7,9 @@ import java.lang.annotation.Retention;
  */
 
 public class BindView {
-
+    public Test aTest = new Test();
+    public Test bTest = new Test();
+    public static class Test{
+        public int i = 1;
+    }
 }
