@@ -24,4 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private gitReset(){
         String reset = "1";
     }
+    public void hehe(){
+
+    }
 }
