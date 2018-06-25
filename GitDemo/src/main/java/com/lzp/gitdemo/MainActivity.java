@@ -10,6 +10,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //ha
         setContentView(R.layout.activity_main);
-        String str = "dev";
+        String str = "master1";
     }
 }
