@@ -9,10 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/APP" />
-            <option value="$PROJECT_DIR$/AlarmNotification" />
-            <option value="$PROJECT_DIR$/ClipChildren" />
-            <option value="$PROJECT_DIR$/RxJava" />
-            <option value="$PROJECT_DIR$/RxJava2" />
+            <option value="$PROJECT_DIR$/SpannableString" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

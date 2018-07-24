@@ -3,12 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/APP/APP.iml" filepath="$PROJECT_DIR$/APP/APP.iml" />
-      <module fileurl="file://$PROJECT_DIR$/AlarmNotification/AlarmNotification.iml" filepath="$PROJECT_DIR$/AlarmNotification/AlarmNotification.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ClipChildren/ClipChildren.iml" filepath="$PROJECT_DIR$/ClipChildren/ClipChildren.iml" />
       <module fileurl="file://$PROJECT_DIR$/Demo.iml" filepath="$PROJECT_DIR$/Demo.iml" />
       <module fileurl="file://F:\Application\Demo\Gradle\Gradle.iml" filepath="F:\Application\Demo\Gradle\Gradle.iml" />
-      <module fileurl="file://$PROJECT_DIR$/RxJava/RxJava.iml" filepath="$PROJECT_DIR$/RxJava/RxJava.iml" />
-      <module fileurl="file://$PROJECT_DIR$/RxJava2/RxJava2.iml" filepath="$PROJECT_DIR$/RxJava2/RxJava2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpannableString/SpannableString.iml" filepath="$PROJECT_DIR$/SpannableString/SpannableString.iml" />
     </modules>
   </component>
 </project>
