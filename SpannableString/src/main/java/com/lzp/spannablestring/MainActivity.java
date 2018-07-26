@@ -8,16 +8,16 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView tv = (TextView) findViewById(R.id.tv);
+        TextView tv=(TextView) findViewById(R.id.tv);
 
-        String s = "0123456789";
+        String s="0123456789";
         SpannableStringBuilder builder = new SpannableStringBuilder(s);
         Drawable drawable = getResources().getDrawable(R.drawable.group);
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
@@ -27,8 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (true) {
             s = "1";
-        } else {
+        }else{
 
+        }
+        if(true){
+            s="2";
         }
     }
 }
