@@ -1,4 +1,4 @@
-package com.lzp.dagger2;
+package com.lzp.dagger2.coffee;
 
 import dagger.Module;
 import dagger.Provides;

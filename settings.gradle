@@ -1,6 +1,7 @@
 include      ':SpannableString',
+            ':Dagger2',
+            ':Dagger2Coffee',
 //            ':CusView',
-//            ':Dagger2',
 //            ':AlarmNotification',
 //            ':Glide',
 //            ':RxJava2',

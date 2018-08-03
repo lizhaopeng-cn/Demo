@@ -9,6 +9,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/APP" />
+            <option value="$PROJECT_DIR$/Dagger2" />
+            <option value="$PROJECT_DIR$/Dagger2Coffee" />
             <option value="$PROJECT_DIR$/SpannableString" />
           </set>
         </option>

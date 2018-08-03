@@ -1,6 +1,7 @@
-package com.lzp.dagger2;
+package com.lzp.dagger2.coffee;
 
 import dagger.Component;
+import dagger.Provides;
 
 /**
  * Created by lzp48947 on 2018/7/9.
@@ -8,5 +9,6 @@ import dagger.Component;
 
 @Component(modules = SimpleModule.class)
 public interface SimpleComponent {
-    CoffeeMachine inject(MainActivity mainActivity);
+    @Provides
+    void inject(MainActivity mainActivity);
 }
