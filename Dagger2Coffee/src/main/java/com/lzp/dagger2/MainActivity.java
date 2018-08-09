@@ -1,16 +1,10 @@
-package com.lzp.dagger2.coffee;
+package com.lzp.dagger2;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.lzp.dagger2.R;
-import com.lzp.dagger2.SecActivity;
-
-import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity {
 //    @Inject

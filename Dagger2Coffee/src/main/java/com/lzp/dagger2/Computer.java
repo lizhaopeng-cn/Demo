@@ -7,10 +7,10 @@ import javax.inject.Inject;
  */
 
 public class Computer {
-    @Inject
-    public Computer(){
-
-    }
+//    @Inject
+//    public Computer(){
+//
+//    }
 
     public String work(){
         return "电脑工作";
