@@ -2,13 +2,15 @@ package com.lzp.dagger2.scop_singleton;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
+
+import javax.inject.Inject;
 
 /**
  * Created by lzp48947 on 2018/8/2.
  */
 
 public class MyApp extends Application {
-
     private MyAppComponent myAppComponent;
     @Override
     public void onCreate() {
@@ -23,4 +25,5 @@ public class MyApp extends Application {
     public MyAppComponent getMyAppComponent(){
         return myAppComponent;
     }
+
 }

@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.gson.Gson;
+import com.lzp.dagger2.dependence.DaggerPhoneComponent;
+import com.lzp.dagger2.dependence.Pad;
+import com.lzp.dagger2.dependence.Phone;
 import com.lzp.dagger2.inject_component.Watch;
 import com.lzp.dagger2.module_provides.Person;
 import com.lzp.dagger2.named_qualifier.Chai;
@@ -35,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
     @Chai
     Engine chaiEngine;
 
+    @Inject
+    Phone phone;
+
+    @Inject
+    Pad pad;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, SecActivity.class));
             }
         });
-        DaggerMainActivityComponent.create().inject(this);
+//        DaggerMainActivityComponent.builder().build().inject(this);
+        DaggerMainActivityComponent.builder().phoneComponent(DaggerPhoneComponent.create()).build().inject(this);
         final String jsonData = "{'name':'zhangsan','age':'20'}";
         final Person person = gson.fromJson(jsonData, Person.class);
         textView.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Dagger2", chaiEngine.work());
                 Log.i("Dagger2", watch.hashCode() + "---" + watch1.hashCode());
                 Log.i("Dagger2", gson.hashCode() + "---" + gson1.hashCode());
+                Log.i("Dagger2", phone.phoneWork());
+                Log.i("Dagger2", pad.padWork());
             }
         });
     }

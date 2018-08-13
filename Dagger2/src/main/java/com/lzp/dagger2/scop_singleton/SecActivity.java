@@ -26,7 +26,9 @@ public class SecActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sec);
-        MyApp.get(SecActivity.this).getMyAppComponent().inject(SecActivity.this);
+        computer = MyApp.get(SecActivity.this).getMyAppComponent().getComputer();
+        computer1 = MyApp.get(SecActivity.this).getMyAppComponent().getComputer();
+//        MyApp.get(SecActivity.this).getMyAppComponent().inject(SecActivity.this);
         Button button = (Button) findViewById(R.id.button);
         Button go = (Button) findViewById(R.id.go);
         go.setOnClickListener(new View.OnClickListener() {

@@ -24,7 +24,9 @@ public class ThirdActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
-        MyApp.get(ThirdActivity.this).getMyAppComponent().inject(ThirdActivity.this);
+        computer = MyApp.get(ThirdActivity.this).getMyAppComponent().getComputer();
+        computer1 = MyApp.get(ThirdActivity.this).getMyAppComponent().getComputer();
+//        MyApp.get(ThirdActivity.this).getMyAppComponent().inject(ThirdActivity.this);
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
