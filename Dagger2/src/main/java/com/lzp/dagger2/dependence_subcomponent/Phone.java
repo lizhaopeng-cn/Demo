@@ -7,10 +7,6 @@ import javax.inject.Inject;
  */
 
 public class Phone {
-    @Inject
-    public Phone(){
-
-    }
     public String phoneWork(){
         return "手机";
     }

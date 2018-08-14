@@ -8,9 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.gson.Gson;
+import com.lzp.dagger2.dependence_subcomponent.DaggerMouseComponent;
 import com.lzp.dagger2.dependence_subcomponent.DaggerPhoneComponent;
-import com.lzp.dagger2.dependence_subcomponent.Pad;
-import com.lzp.dagger2.dependence_subcomponent.Phone;
 import com.lzp.dagger2.inject_component.Watch;
 import com.lzp.dagger2.module_provides.Person;
 import com.lzp.dagger2.named_qualifier.Chai;
@@ -38,12 +37,6 @@ public class MainActivity extends AppCompatActivity {
     @Chai
     Engine chaiEngine;
 
-    @Inject
-    Phone phone;
-
-    @Inject
-    Pad pad;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         });
 //        DaggerMainActivityComponent.builder().build().inject(this);
         DaggerMainActivityComponent.builder().phoneComponent(DaggerPhoneComponent.create()).build().inject(this);
+//        DaggerMouseComponent.builder().build().getMainActivityComponent().inject(this);
         final String jsonData = "{'name':'zhangsan','age':'20'}";
         final Person person = gson.fromJson(jsonData, Person.class);
         textView.setOnClickListener(new View.OnClickListener() {
@@ -69,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Dagger2", chaiEngine.work());
                 Log.i("Dagger2", watch.hashCode() + "---" + watch1.hashCode());
                 Log.i("Dagger2", gson.hashCode() + "---" + gson1.hashCode());
-                Log.i("Dagger2", phone.phoneWork());
-                Log.i("Dagger2", pad.padWork());
+                Log.i("Dagger2", DaggerPhoneComponent.create().getPhone().phoneWork());
+                Log.i("Dagger2", DaggerMouseComponent.create().getPadComponent().getPad().padWork());
+                Log.i("Dagger2", DaggerMouseComponent.create().getMose().mouseWork());
             }
         });
     }

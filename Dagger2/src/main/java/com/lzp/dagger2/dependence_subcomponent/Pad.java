@@ -7,10 +7,6 @@ import javax.inject.Inject;
  */
 
 public class Pad {
-    @Inject
-    public Pad(){
-
-    }
     public String padWork(){
         return "平板";
     }
