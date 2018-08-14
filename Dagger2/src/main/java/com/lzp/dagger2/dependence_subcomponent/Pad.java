@@ -1,4 +1,4 @@
-package com.lzp.dagger2.dependence;
+package com.lzp.dagger2.dependence_subcomponent;
 
 import javax.inject.Inject;
 
@@ -12,6 +12,6 @@ public class Pad {
 
     }
     public String padWork(){
-        return "平板工作了";
+        return "平板";
     }
 }

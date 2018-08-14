@@ -16,6 +16,6 @@ public class Watch {
     }
 
     public String work(){
-        return "手表工作";
+        return "手表";
     }
 }

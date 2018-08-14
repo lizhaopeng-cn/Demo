@@ -1,4 +1,4 @@
-package com.lzp.dagger2.dependence;
+package com.lzp.dagger2.dependence_subcomponent;
 
 import dagger.Component;
 

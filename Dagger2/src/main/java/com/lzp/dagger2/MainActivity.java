@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.gson.Gson;
-import com.lzp.dagger2.dependence.DaggerPhoneComponent;
-import com.lzp.dagger2.dependence.Pad;
-import com.lzp.dagger2.dependence.Phone;
+import com.lzp.dagger2.dependence_subcomponent.DaggerPhoneComponent;
+import com.lzp.dagger2.dependence_subcomponent.Pad;
+import com.lzp.dagger2.dependence_subcomponent.Phone;
 import com.lzp.dagger2.inject_component.Watch;
 import com.lzp.dagger2.module_provides.Person;
 import com.lzp.dagger2.named_qualifier.Chai;

@@ -1,6 +1,6 @@
 package com.lzp.dagger2;
 
-import com.lzp.dagger2.dependence.PhoneComponent;
+import com.lzp.dagger2.dependence_subcomponent.PhoneComponent;
 import com.lzp.dagger2.module_provides.GsonModule;
 import com.lzp.dagger2.named_qualifier.EngineModule;
 

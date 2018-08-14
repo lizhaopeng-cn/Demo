@@ -1,6 +1,4 @@
-package com.lzp.dagger2.dependence;
-
-import javax.inject.Inject;
+package com.lzp.dagger2.dependence_subcomponent;
 
 import dagger.Module;
 import dagger.Provides;
