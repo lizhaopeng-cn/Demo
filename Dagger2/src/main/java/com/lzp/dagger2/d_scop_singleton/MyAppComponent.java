@@ -1,7 +1,6 @@
-package com.lzp.dagger2.scop_singleton;
+package com.lzp.dagger2.d_scop_singleton;
 
 import dagger.Component;
-import dagger.Module;
 
 /**
  * Created by lzp48947 on 2018/8/2.

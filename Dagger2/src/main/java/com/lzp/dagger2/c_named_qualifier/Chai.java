@@ -1,4 +1,4 @@
-package com.lzp.dagger2.named_qualifier;
+package com.lzp.dagger2.c_named_qualifier;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

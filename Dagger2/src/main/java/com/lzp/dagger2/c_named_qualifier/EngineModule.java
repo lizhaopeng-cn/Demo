@@ -1,9 +1,6 @@
-package com.lzp.dagger2.named_qualifier;
-
-import com.lzp.dagger2.scop_singleton.AppScop;
+package com.lzp.dagger2.c_named_qualifier;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;

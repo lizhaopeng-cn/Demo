@@ -1,4 +1,4 @@
-package com.lzp.dagger2.scop_singleton;
+package com.lzp.dagger2.d_scop_singleton;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -3,7 +3,7 @@
     package="com.lzp.dagger2">
 
     <application
-        android:name=".scop_singleton.MyApp"
+        android:name=".d_scop_singleton.MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -18,9 +18,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".scop_singleton.SecActivity" >
+        <activity android:name=".d_scop_singleton.SecActivity" >
         </activity>
-        <activity android:name=".scop_singleton.ThirdActivity" >
+        <activity android:name=".d_scop_singleton.ThirdActivity" >
         </activity>
     </application>
 

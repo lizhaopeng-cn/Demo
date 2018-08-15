@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.gson.Gson;
-import com.lzp.dagger2.dependence_subcomponent.DaggerMouseComponent;
-import com.lzp.dagger2.dependence_subcomponent.DaggerPhoneComponent;
-import com.lzp.dagger2.inject_component.Watch;
-import com.lzp.dagger2.module_provides.Person;
-import com.lzp.dagger2.named_qualifier.Chai;
-import com.lzp.dagger2.named_qualifier.Engine;
-import com.lzp.dagger2.named_qualifier.QiEngine;
-import com.lzp.dagger2.scop_singleton.SecActivity;
+import com.lzp.dagger2.e_dependence_subcomponent.DaggerMouseComponent;
+import com.lzp.dagger2.e_dependence_subcomponent.DaggerPhoneComponent;
+import com.lzp.dagger2.a_inject_component.Watch;
+import com.lzp.dagger2.b_module_provides.Person;
+import com.lzp.dagger2.c_named_qualifier.Chai;
+import com.lzp.dagger2.c_named_qualifier.Engine;
+import com.lzp.dagger2.c_named_qualifier.QiEngine;
+import com.lzp.dagger2.d_scop_singleton.SecActivity;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Dagger2", DaggerPhoneComponent.create().getPhone().phoneWork());
                 Log.i("Dagger2", DaggerMouseComponent.create().getPadComponent().getPad().padWork());
                 Log.i("Dagger2", DaggerMouseComponent.create().getMose().mouseWork());
+                Log.i("Dagger2", "aaa");
             }
         });
     }

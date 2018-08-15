@@ -1,6 +1,4 @@
-package com.lzp.dagger2.inject_component;
-
-import android.util.Log;
+package com.lzp.dagger2.a_inject_component;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

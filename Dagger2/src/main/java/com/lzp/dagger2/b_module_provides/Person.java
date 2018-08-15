@@ -1,4 +1,4 @@
-package com.lzp.dagger2.module_provides;
+package com.lzp.dagger2.b_module_provides;
 
 /**
  * Created by lzp48947 on 2018/8/1.

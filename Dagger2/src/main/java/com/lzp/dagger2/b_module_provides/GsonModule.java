@@ -1,4 +1,4 @@
-package com.lzp.dagger2.module_provides;
+package com.lzp.dagger2.b_module_provides;
 
 import com.google.gson.Gson;
 

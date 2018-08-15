@@ -1,10 +1,7 @@
-package com.lzp.dagger2.scop_singleton;
+package com.lzp.dagger2.d_scop_singleton;
 
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
-
-import javax.inject.Inject;
 
 /**
  * Created by lzp48947 on 2018/8/2.
