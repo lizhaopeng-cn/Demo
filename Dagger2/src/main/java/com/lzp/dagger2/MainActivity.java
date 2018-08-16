@@ -19,11 +19,16 @@ import com.lzp.dagger2.d_scop_singleton.SecActivity;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Provider;
+
+import dagger.Lazy;
 
 public class MainActivity extends AppCompatActivity {
-    @Inject Watch watch;
+    @Inject
+    Lazy<Watch> watch;
 
-    @Inject Watch watch1;
+    @Inject
+    Provider<Watch> watch1;
 
     @Inject Gson gson;
 
@@ -57,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Dagger2", watch.work());
+                Log.i("Dagger2", "" + watch.get().hashCode());
+                Log.i("Dagger2", "" + watch1.get().hashCode());
                 Log.i("Dagger2", person.getName());
                 Log.i("Dagger2", qiEngine.work());
                 Log.i("Dagger2", chaiEngine.work());
