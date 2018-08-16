@@ -5,10 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity {
-//    @Inject
-//    CoffeeMachine coffeeMachine;
+    @Inject
+    Computer computer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 //                CoffeeMachine coffeeMachine = new CoffeeMachine(new Cooker("张三", "摩卡"));
 //                DaggerSimpleComponent.builder().build().inject(MainActivity.this);
-//                Toast.makeText(MainActivity.this, coffeeMachine.makeCoffee(), Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, SecActivity.class));
+                Toast.makeText(MainActivity.this, computer.work(), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, SecondActivity.class));
             }
         });
 

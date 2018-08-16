@@ -1,6 +1,6 @@
 include      ':SpannableString',
             ':Dagger2',
-            ':Dagger2Coffee',
+        ':Dagger2Demo',
 //            ':CusView',
 //            ':AlarmNotification',
 //            ':Glide',
