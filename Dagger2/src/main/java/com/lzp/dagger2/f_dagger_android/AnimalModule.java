@@ -6,14 +6,14 @@ import dagger.Provides;
 /**
  * Created by lzp48947 on 2018/8/16.
  */
-@Module(subcomponents = CatComponent.class)
+//@Module(subcomponents = CatComponent.class)
 public class AnimalModule {
-    @Provides
+//    @Provides
     public Animal provideAnimal(){
         return new Animal();
     }
 
-    @Provides
+//    @Provides
     public CatComponent provideCatComponent(CatComponent.CatBuilder catBuilder){
         return catBuilder.name("喵喵").build();
     }

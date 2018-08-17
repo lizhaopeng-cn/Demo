@@ -6,9 +6,9 @@ import dagger.Provides;
 /**
  * Created by lzp48947 on 2018/8/15.
  */
-@Module
+//@Module
 class CatModule {
-    @Provides
+//    @Provides
     public Cat provideCat(){
         return new Cat();
     }

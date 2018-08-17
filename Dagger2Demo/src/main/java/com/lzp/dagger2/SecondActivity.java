@@ -13,7 +13,7 @@ import javax.inject.Inject;
  * Created by lzp48947 on 2018/7/31.
  */
 
-public class SecondActivity extends AppCompatActivity {
+public class SecondActivity extends BaseActivity {
     @Inject
     String className;
     @Override

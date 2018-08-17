@@ -5,7 +5,7 @@ import dagger.Component;
 /**
  * Created by lzp48947 on 2018/8/16.
  */
-@Component
+//@Component
 public interface AnimalComponent {
     Animal getAnimal();
     CatComponent.CatBuilder getCatBuilder();
