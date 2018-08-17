@@ -15,7 +15,7 @@ import javax.inject.Inject;
 
 public class SecondActivity extends BaseActivity {
     @Inject
-    String className;
+    ApiService apiService;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +25,7 @@ public class SecondActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 //                Computer computer = DaggerComputerComponent.create().provideComputer();
-                Toast.makeText(SecondActivity.this, className, Toast.LENGTH_SHORT).show();
+                Toast.makeText(SecondActivity.this, apiService.getApiService(), Toast.LENGTH_SHORT).show();
             }
         });
     }

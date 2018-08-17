@@ -1,5 +1,6 @@
 package com.lzp.dagger2;
 
+import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 import dagger.android.support.AndroidSupportInjectionModule;
@@ -10,9 +11,16 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {
         AndroidInjectionModule.class,
         AndroidSupportInjectionModule.class,
-        MainActivityModule.class,
-        SecondActivityModule.class
+        BaseActivityModule.class
 })
 public interface MyAppComponent {
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        Builder application(MyApp myApp);
+        MyAppComponent build();
+    }
+
+
     void inject(MyApp myApp);
 }
