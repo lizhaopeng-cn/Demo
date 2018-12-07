@@ -15,23 +15,23 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView tv=(TextView) findViewById(R.id.tv);
-
-        String s="0123456789";
-        SpannableStringBuilder builder = new SpannableStringBuilder(s);
-        Drawable drawable = getResources().getDrawable(R.drawable.group);
-        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-        CenteredImageSpan imgSpan = new CenteredImageSpan(drawable);
-        builder.setSpan(imgSpan, 3, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);//不管是哪一种都不会影响1跟3的颜色
-        tv.setText(builder);
-
-        if (true) {
-            s = "1";
-        }else{
-
-        }
-        if(true){
-            s="2";
-        }
+//        TextView tv=(TextView) findViewById(R.id.tv);
+//
+//        String s="0123456789";
+//        SpannableStringBuilder builder = new SpannableStringBuilder(s);
+//        Drawable drawable = getResources().getDrawable(R.drawable.group);
+//        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+//        CenteredImageSpan imgSpan = new CenteredImageSpan(drawable);
+//        builder.setSpan(imgSpan, 3, 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);//不管是哪一种都不会影响1跟3的颜色
+//        tv.setText(builder);
+//
+//        if (true) {
+//            s = "1";
+//        }else{
+//
+//        }
+//        if(true){
+//            s="2";
+//        }
     }
 }

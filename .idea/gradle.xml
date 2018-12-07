@@ -9,7 +9,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/APP" />
-            <option value="$PROJECT_DIR$/Dagger2Demo" />
+            <option value="$PROJECT_DIR$/ARouter" />
+            <option value="$PROJECT_DIR$/Kotlin" />
             <option value="$PROJECT_DIR$/SpannableString" />
           </set>
         </option>

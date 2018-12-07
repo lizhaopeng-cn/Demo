@@ -25,10 +25,13 @@ import dagger.Lazy;
 
 public class MainActivity extends AppCompatActivity {
     @Inject
-    Lazy<Watch> watch;
+    Watch watch;
 
     @Inject
-    Provider<Watch> watch1;
+    Lazy<Watch> watch1;
+
+    @Inject
+    Provider<Watch> watch2;
 
     @Inject Gson gson;
 
@@ -62,8 +65,9 @@ public class MainActivity extends AppCompatActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Dagger2", "" + watch.get().hashCode());
+                Log.i("Dagger2", "" + watch.hashCode());
                 Log.i("Dagger2", "" + watch1.get().hashCode());
+                Log.i("Dagger2", "" + watch2.get().hashCode());
                 Log.i("Dagger2", person.getName());
                 Log.i("Dagger2", qiEngine.work());
                 Log.i("Dagger2", chaiEngine.work());
