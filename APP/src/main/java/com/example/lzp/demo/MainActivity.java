@@ -1,8 +1,10 @@
 package com.example.lzp.demo;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -57,5 +59,17 @@ public class MainActivity extends AppCompatActivity {
 //        bindView.aTest.i = 5;
 //        bindView.bTest.i = 10;
 //        textView.setText("" + bindView.aTest.i + "-" + bindView.bTest.i);
+
+        final RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.rl_main_text);
+
+
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drawable rlb = relativeLayout.getBackground();
+                TextView textView = (TextView) findViewById(R.id.tv_marque);
+                Drawable tvb = textView.getBackground();
+            }
+        });
     }
 }

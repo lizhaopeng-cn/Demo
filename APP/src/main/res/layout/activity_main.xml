@@ -2,48 +2,71 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rl_main"
-    android:padding="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context="com.example.lzp.demo.MainActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:divider="@drawable/bg_line"
-        android:showDividers="middle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/white">
 
         <TextView
-            android:id="@+id/tv_marque"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:text="qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/bg_line"
+        android:orientation="vertical"
+        android:showDividers="middle">
+
+        <RelativeLayout
+            android:id="@+id/rl_main_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_marque"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:ellipsize="middle"
+                android:layerType="software"
+                android:text="人民日报生活漫步：莫让千元打车费毁了专车骄傲的撒谎会计师的福建海事局的话费积分" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:layerType="software"
+                android:text="hahaha" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="qqq" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_below="@id/tv_marque"
             android:layerType="software"
-            android:ellipsize="middle"
-            android:text="人民日报生活漫步：莫让千元打车费毁了专车骄傲的撒谎会计师的福建海事局的话费积分" />
-
-
-        <TextView
-            android:layout_below="@id/tv_marque"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:text="hahaha"
-            android:layerType="software"/>
-
-        <TextView
-            android:layout_below="@id/tv_marque"
-            android:layout_width="match_parent"
-            android:layout_height="5px"
-            android:background="@drawable/bg_line"
-            android:layerType="software"/>
-
-        <TextView
-            android:layout_below="@id/tv_marque"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:text="hahaha"
-            android:layerType="software"/>
+            android:text="hahaha" />
 
     </LinearLayout>
 
