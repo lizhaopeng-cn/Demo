@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/APP/APP.iml" filepath="$PROJECT_DIR$/APP/APP.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Demo.iml" filepath="$PROJECT_DIR$/Demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Reflection/Reflection.iml" filepath="$PROJECT_DIR$/Reflection/Reflection.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpannableString/SpannableString.iml" filepath="$PROJECT_DIR$/SpannableString/SpannableString.iml" />
+      <module fileurl="file://$PROJECT_DIR$/APP/APP.iml" filepath="$PROJECT_DIR$/APP/APP.iml" group="Demo/APP" />
+      <module fileurl="file://$PROJECT_DIR$/Demo.iml" filepath="$PROJECT_DIR$/Demo.iml" group="Demo" />
+      <module fileurl="file://$PROJECT_DIR$/MyHandler/MyHandler.iml" filepath="$PROJECT_DIR$/MyHandler/MyHandler.iml" group="Demo/MyHandler" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MyTouch/MyTouch.iml" filepath="$PROJECT_DIR$/.idea/modules/MyTouch/MyTouch.iml" group="Demo/MyTouch" />
+      <module fileurl="file://$PROJECT_DIR$/Reflection/Reflection.iml" filepath="$PROJECT_DIR$/Reflection/Reflection.iml" group="Demo/Reflection" />
+      <module fileurl="file://$PROJECT_DIR$/SpannableString/SpannableString.iml" filepath="$PROJECT_DIR$/SpannableString/SpannableString.iml" group="Demo/SpannableString" />
     </modules>
   </component>
 </project>
